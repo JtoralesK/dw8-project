@@ -22,4 +22,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DW8_PROJECT }}'
           channelId: live
           projectId: dw8-project
-          entryPoint: "./
+          entryPoint: ".
