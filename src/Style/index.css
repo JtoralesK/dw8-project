@@ -1,0 +1,39 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+.divItem{
+    height: 200px;
+    width: 100%;
+    background-color: antiquewhite;
+    border: solid 1px black;
+    margin:10px;
+}
+.content{
+    display: flex;
+    flex-direction: row;
+}
+img{
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+}
+h1{
+    font-size: 20px;
+}
+h3{
+    margin-top:20px;
+    font-size: 15px;
+}
+.buscador{
+    margin: 5px;
+    border: solid rgb(42, 42, 42) 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.tata{
+    font-size: 40px;
+}
