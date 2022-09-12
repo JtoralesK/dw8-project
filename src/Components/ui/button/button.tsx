@@ -1,11 +1,13 @@
-import React from "react"
+import React, { Children } from "react"
 import css from "./button.css"
 type Prop= {
-  pal:string
+  name:string
+  click?:()=>any
 }
-function MyButton(props){
+function MyButton(p:Prop){
+  
     return (
-           <button className={css.button}>{props.pal}</button>
+           <button  onClick={p.click} className={css.buttonMy}>{p.name}</button>
       )
 }
        

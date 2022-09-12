@@ -1,0 +1,25 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 350px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+  }
+  .input{
+    width: 90%;
+    padding: 14px 16px;
+    border-radius: 12px ;
+  }
+  
+  .lostPassword{
+    margin: 5px;
+    color: bisque;
+  }
+  .linea{
+    border-bottom:solid 1px grey;
+    width:85%;
+    height:20px;
+  }

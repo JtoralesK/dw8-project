@@ -1,0 +1,55 @@
+.serviciosContent{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+.serviciosContentCards{
+    height: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+  }
+.serviciosCard {
+  background-color: #F5F3EE;
+  width:340px;
+  height: 420px;
+  border-radius: 15px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  margin: 20px;
+  transition: all 0.25s;
+  text-align: center;
+  position: static;
+  z-index: 1;
+  }
+   .serviciosCard:hover {
+    transform: translateY(15px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+  }
+  .info{
+    width:90%;
+    margin:15px auto;
+    
+  }
+   .serviciosCardImg {
+    width: 100%;
+    height: 250px;
+    padding: 0;
+  }
+  .serviciosCardTitle {
+    font-weight: 600;
+    font-size:24px;
+    margin: 15px 0;
+    font-family: 'Baloo Thambi 2', cursive;
+  }
+  .serviciosCardP {
+    padding: 0 1rem;
+    font-size: 17px;
+    text-align:center;
+    font-weight: 300;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    color:#989797;
+  }
+ 
