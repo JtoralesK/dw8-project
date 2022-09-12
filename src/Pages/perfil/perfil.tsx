@@ -6,7 +6,9 @@ import css from"./login.css"
  function Perfil(){  
     return (
      <>
- 
+     <Header></Header>
+     <h1>Perfil:</h1>
+
      </>
         )
  }    

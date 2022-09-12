@@ -21,3 +21,6 @@ export function dataLocalStorage(){
     const data=JSON.parse(localStorage.getItem("me"));
     return data
 }
+export function setLocalStorage(newData){
+    localStorage.setItem("me",JSON.stringify(newData));
+}

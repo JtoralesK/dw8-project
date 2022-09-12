@@ -6,21 +6,42 @@ import css from"./login.css"
 import {MyButton} from"../../Components/ui/button/button"
 import {NewLogin} from"./newLogin/newLogin"
 import {auth,obtieneToken} from"../../hooks/hooks"
-import {dataLocalStorage} from"../../hooks/initLocalStorage"
- function Login(){  
-    const [user,setUser]=useState([]);
- 
-    async function datosLogin(user?){
-        setUser(user);
-        const json = await obtieneToken(user)
-        
-        console.log(json)
+import {dataLocalStorage,setLocalStorage} from"../../hooks/initLocalStorage"
+import {Link ,useNavigate } from"react-router-dom"
 
+ function Login(){  
+    const [user,setUserLog]=useState([]);
+    const history = useNavigate() 
+    //inicia secion
+    async function datosLogin(user?){
+        obtieneToken(user).then((e)=>{
+            const data= dataLocalStorage();
+            let newData = {
+                ...data,
+                token:e.token
+            }     
+            if(e.token){
+                setLocalStorage(newData) 
+                history(data.page); 
+            }
+         })
     }
-    async function datosNewLogin(user?){   
-        setUser(user);     
-        const json = await auth(user)
-        const token = await obtieneToken(user)
+    //crea nueva cuenta
+     function datosNewLogin(user?){   
+          auth(user).then((e)=>{
+            console.log(e);
+             obtieneToken(user).then((e)=>{
+                const data= dataLocalStorage();
+                let newData = {
+                    ...data,
+                    token:e.token
+                }     
+                if(e.token){
+                    setLocalStorage(newData) 
+                    history(data.page); 
+                }
+             })
+          })
     }
    
     //new cuenta

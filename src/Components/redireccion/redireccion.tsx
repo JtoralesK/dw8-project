@@ -1,11 +1,11 @@
 import {Link ,useNavigate } from"react-router-dom"
 import React , { useState ,useEffect}from "react"
-//import {usePage} from"../../hooks/redi"
+import css from "./redireccion.css"
 
 type Prop={
     page:string,
     name:string
-    then:()=>{}
+    then?:(any)=>any
 }
 
  function Redirreccion(p:Prop){
@@ -22,13 +22,13 @@ type Prop={
 
     const click = ()=>{        
         if(p.then){
-            p.then();  }
+            p.then(p.page);  }
         if(p.page){
             setValue(p.page)
          }
     }
     return<>
-        <p onClick={click}>{p.name}</p>
+        <p className={css.link} onClick={click}>{p.name}</p>
     </>
 }
   
