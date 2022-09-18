@@ -1,6 +1,55 @@
 .principal{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
 }
+.cajaTitulo{
+    padding: 30px;
+    max-width: 600px;
+    align-items: center;
+    flex-grow:2;
+}
+
+.titulo{
+    font-size: 12vh;
+    font-weight: 900;
+    max-width: 600px;
+    color:#ebc88b ;
+}
+.parrafo{
+    margin-top: 40px;
+}
+@media (max-width: 900px) {
+    .titulo{
+        font-size: 5rem;
+        font-weight: 800;
+    }
+    .cajaTitulo{
+     text-align: center;
+    }
+  }
+@media (max-width: 750px) {
+    .titulo{
+        font-size: 2rem;
+        font-weight: 900;
+        text-align: center;
+    }
+    .principal{
+        flex-direction: column;
+    }
+  }
+  .contenedorImg{
+    flex-grow:1;
+  }
+  .img{
+    padding: 0;
+    width: 80%;
+    height: 100%;
+    margin-left: auto;
+     display: block;
+  }
+  @media (max-width: 750px) {
+    .img{
+        width: 100%;
+      }
+  }

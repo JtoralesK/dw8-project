@@ -1,35 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import css from "./header.css"
 import {Link ,useNavigate } from"react-router-dom"
-import {LinkT} from"../link/link"
-import {initStorage} from"../../hooks/initLocalStorage"
-import {confirmaUser} from"../../hooks/hooks"
-import {Redirreccion} from"../redireccion/redireccion"
+import {obtieneUser} from"../../hooks/hooks"
+import {page,user} from"../../hooks/atoms"
+import { useRecoilState} from"recoil"
+import {pages} from"./namesPages.js"
 function Header(){
-    const history = useNavigate() 
-   async function preguntaUsernew(page){
-    let data = initStorage();
-        let confirmUs= await confirmaUser(data)        
-       if(confirmUs){
-        console.log("no esta logeado");
+    const [linkPage,setPage]=useRecoilState(page);
+    const [lookUser,serUser]=useRecoilState(user)
+    console.log(lookUser);
+    
+    const navigate = useNavigate() 
+
+    const [name,setLog]=useState("");
+    useEffect(()=>{
+        console.log("se clickeo en header");
         
-        history(page);
-    }else{ history("/login") ;}
-    }
-    const home = ()=>{
-        history("/");
-    }
+        if(name){            
+            obtieneUser(lookUser).then((r)=>{    
+                console.log(r);
+                             
+                if(!r){
+                setPage(name)
+                navigate("/login")
+            }else{
+                navigate(name)
+            }})
+        }
+    },[name])
     return <>
+   
     <header className={css.header}>
         <div className={css.wrapper}>
-            <div className={css.menuLinks}><Redirreccion name="PetApx" page="/" then={home}></Redirreccion></div>
+            <div className={css.menuLinks}>
+                <Link to={"/"}>PetApx</Link>
+             </div>
+             <button className={css.abrirMenu}>x</button>
                <ul className={css.menu}>
-                <li className={css.menuLinks}><Redirreccion name="Perfil" page="/perfil" then={preguntaUsernew}></Redirreccion></li>
-                <li className={css.menuLinks}><Redirreccion name="Mascotas cercanas" page="/mascotas-Cercanas" then={preguntaUsernew}></Redirreccion></li>
-                <li className={css.menuLinks}><Redirreccion name="Mascotas perdidas" page="/mascotas-Perdidas" then={preguntaUsernew}></Redirreccion></li>
+               {pages.map((e)=>{
+                return <li onClick={()=>{setLog(e.page)}} key={e.name} className={css.menuLinks}>{e.name}</li>
+               })}
                </ul>
         </div>
     </header>
-    </>
+    </> 
 }
-export {Header};
+export {Header}

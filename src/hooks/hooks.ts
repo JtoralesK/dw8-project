@@ -1,10 +1,13 @@
- export async function confirmaUser(data){
+ export async function obtieneUser(data){
   const url = await fetch("https://apx-desafio-mod7.herokuapp.com/user",{headers:{
         'Authorization':`bearer ${data.token}` }})
         data = await url.json()
         if(data.error){
           return false;
-        }return true;
+        }else{
+          return data;
+        }
+        
         
 }
 export async function auth(data){

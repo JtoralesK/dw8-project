@@ -50,4 +50,14 @@
     color:#ebc08b;
     text-decoration: none;
 }
-
+.abrirMenu{
+    display: none;
+}
+@media (max-width: 900px) {
+    .menu{
+      display: none;
+    }
+    .abrirMenu{
+        display: initial;
+    }
+  }

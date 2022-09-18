@@ -1,50 +1,40 @@
 import React , { useState ,useEffect}from "react"
-import {Outlet } from"react-router-dom"
-import { Header } from "../../Components/Header/header"
 import {Enter} from"./enter/enterLogin"
+import {page,user} from"../../hooks/atoms"
+import { useRecoilState} from"recoil"
 import css from"./login.css"
 import {MyButton} from"../../Components/ui/button/button"
 import {NewLogin} from"./newLogin/newLogin"
-import {auth,obtieneToken} from"../../hooks/hooks"
-import {dataLocalStorage,setLocalStorage} from"../../hooks/initLocalStorage"
-import {Link ,useNavigate } from"react-router-dom"
+import {useNavigate } from"react-router-dom"
+import {obtieneToken,obtieneUser} from"../../hooks/hooks"
+
 
  function Login(){  
-    const [user,setUserLog]=useState([]);
-    const history = useNavigate() 
-    //inicia secion
-    async function datosLogin(user?){
-        obtieneToken(user).then((e)=>{
-            const data= dataLocalStorage();
-            let newData = {
-                ...data,
-                token:e.token
-            }     
-            if(e.token){
-                setLocalStorage(newData) 
-                history(data.page); 
-            }
-         })
-    }
-    //crea nueva cuenta
-     function datosNewLogin(user?){   
-          auth(user).then((e)=>{
-            console.log(e);
-             obtieneToken(user).then((e)=>{
-                const data= dataLocalStorage();
-                let newData = {
-                    ...data,
-                    token:e.token
-                }     
-                if(e.token){
-                    setLocalStorage(newData) 
-                    history(data.page); 
-                }
-             })
-          })
-    }
+   const [linkPage,setPage]=useRecoilState(page)
+   const [lookUser,serUser]=useRecoilState(user)
    
-    //new cuenta
+    const [logged,setLogged]=useState(null);
+    const navigate = useNavigate() 
+    const enter =(e)=>{    
+      
+      const email = e.email
+      const password = e.password
+      obtieneToken({email,password}).then((e1)=>{
+         obtieneUser(e1).then((e)=>{
+            console.log(e);
+            if(e1.token){
+               serUser({token:e1.token,fullname:e.fullname,email:e.email})
+               navigate(linkPage)
+            }     
+         })
+            
+      })
+            
+    }
+
+
+
+    //abre card new cuenta
     const [active,setActive]=useState(false)
     const datosNewCuenta = ()=>{
       setActive(!active)
@@ -53,19 +43,17 @@ import {Link ,useNavigate } from"react-router-dom"
     const salir = ()=>{
         setActive(!active)
     }
-
     return (
      <>
      <section className={css.bodyy}>
-        <Header></Header>
         <div className={css.loginSection}>
         <img className={css.img} src="https://www.nami.org/NAMI/media/NAMI-Media/BlogImageArchive/2020/human-animal-bond-blog.jpg" alt="" />
         <div className={css.cardLog}>
-        <Enter submit={datosLogin}></Enter>
+        <Enter submit={enter} ></Enter>
         <MyButton click={datosNewCuenta} name="Crear nueva cuenta"></MyButton>
         </div> 
         </div>
-        <NewLogin active={active} salir={salir} submit={datosNewLogin}></NewLogin>
+        <NewLogin active={active} salir={salir} ></NewLogin>
      </section>
      </>
         )
