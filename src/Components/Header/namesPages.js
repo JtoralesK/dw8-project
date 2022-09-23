@@ -1,7 +1,4 @@
-export const pages =[{
-   page: "/reportesCercanos",
-   name:"Mascotas Perdidas"
-},
+export const pages =[
 {
     page: "/perfil",
     name:"Perfil"
@@ -9,4 +6,9 @@ export const pages =[{
  {
     page: "/reportar",
     name:"Reportar mascota"
- }]
+ }, {
+   page: "/misReportes",
+   name:"Mis Reportes"
+}
+
+]

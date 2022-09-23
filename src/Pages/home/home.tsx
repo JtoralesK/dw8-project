@@ -4,6 +4,8 @@ import { Header } from "../../Components/Header/header"
 import {Link ,useParams} from"react-router-dom"
 import css from"./home.css"
 import {Card} from "../../Components/card/card"
+import {page,user,ubication,useLocalStorage} from"../../hooks/atoms"
+import { useRecoilState} from"recoil"
 
  function Home(){
     return (

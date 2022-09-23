@@ -2,28 +2,29 @@ import React, { useEffect, useState } from "react";
 import css from "./header.css"
 import {Link ,useNavigate } from"react-router-dom"
 import {obtieneUser} from"../../hooks/hooks"
-import {page,user} from"../../hooks/atoms"
-import { useRecoilState} from"recoil"
+import {page,user,ubication} from"../../hooks/atoms"
+import {useLocalStorage} from"../../hooks/useLocalStorage"
+import { useRecoilState,useSetRecoilState} from"recoil"
 import {pages} from"./namesPages.js"
 function Header(){
-    const [linkPage,setPage]=useRecoilState(page);
-    const [lookUser,serUser]=useRecoilState(user)
-    console.log(lookUser);
-    
     const navigate = useNavigate() 
+    const [lookUser,serUser]=useRecoilState(user);
+
+    const [value,setLocal]= useLocalStorage("user",{})
+    const [linkPage,setPage]= useLocalStorage("page",{})
 
     const [name,setLog]=useState("");
     useEffect(()=>{
-        console.log("se clickeo en header");
         
-        if(name){            
-            obtieneUser(lookUser).then((r)=>{    
-                console.log(r);
-                             
+        if(name){  
+            console.log("se hizo click",value);
+                          
+            obtieneUser({token:value.token}).then((r)=>{    
                 if(!r){
                 setPage(name)
                 navigate("/login")
             }else{
+                serUser(value)
                 navigate(name)
             }})
         }
@@ -40,6 +41,7 @@ function Header(){
                {pages.map((e)=>{
                 return <li onClick={()=>{setLog(e.page)}} key={e.name} className={css.menuLinks}>{e.name}</li>
                })}
+              <li className={css.menuLinks}> <Link  to={"/mascotasCercanas"}>Mascotas Cercanas</Link></li>
                </ul>
         </div>
     </header>

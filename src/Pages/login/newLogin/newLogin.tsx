@@ -1,7 +1,6 @@
 import React , { useState ,useEffect}from "react"
 import {MyButton} from"../../../Components/ui/button/button"
 import css from"./new.css"
-import {useUser} from"../../../hooks/useUser"
 
 type Prop = {
     submit?:(any)=>any,

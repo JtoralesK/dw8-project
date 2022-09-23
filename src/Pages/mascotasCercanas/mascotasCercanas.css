@@ -1,0 +1,17 @@
+.contenedorM{
+    max-width: 1100px;
+    height: 91vh;
+    margin: auto;
+   
+}
+.contenedorDeItems{
+    display: flex;
+    flex-direction: row;
+}
+.title{
+    text-align: center;
+}
+.img{
+    width: 200px;
+    height: 200px;
+}

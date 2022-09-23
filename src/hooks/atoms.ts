@@ -12,8 +12,17 @@ export const page = atom({
     key: "me",
     default:{
       token:"",
-      email:"jtorales2016@gmail.com",
-      fullname:"Javie Torales"
+      email:"",
+      fullname:""
+    }
+    
+  });
+  export const ubication:any = atom({
+    key: "location",
+    default:{
+      lng:null,
+      lat:null,
+      estado:false
     }
     
   });

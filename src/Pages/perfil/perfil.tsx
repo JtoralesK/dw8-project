@@ -1,16 +1,24 @@
 import React , { useState ,useEffect}from "react"
 import {Outlet } from"react-router-dom"
 import { Header } from "../../Components/Header/header"
-import {Link ,useParams} from"react-router-dom"
+import {Link ,useNavigate} from"react-router-dom"
 import {user} from"../../hooks/atoms"
 import { useRecoilState} from"recoil"
 import {MyButton} from"../../Components/ui/button/button"
 import css from"./perfil.css"
+import {useLocalStorage} from"../../hooks/useLocalStorage"
+
  function Perfil(){  
    const [lookUser,serUser]=useRecoilState(user)
+   const [value,setLocal]= useLocalStorage("user",{})
+   const navigate = useNavigate() 
+
    const me:any = lookUser
-   console.log(lookUser,"perdil");
-   
+   const salir = ()=>{
+    setLocal({});
+    serUser({});
+    navigate("/");
+   }
     return (
      <>
     <section className={css.perfil}>
@@ -28,7 +36,7 @@ import css from"./perfil.css"
       <button>Cambiar Contraseña</button>
       <button>Editar Perfil</button>
      </div>
-     <button className={css.salir}>Salir</button>
+     <button onClick={salir} className={css.salir}>Salir</button>
       </div>
 
     </div>

@@ -40,6 +40,7 @@
     align-items: center;
     justify-content: flex-start;
     display: flex;
+    cursor: pointer;
 }
 .menuLinks:hover{
     background-color: #343257;
