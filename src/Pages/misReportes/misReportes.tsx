@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
-import {ubication,user} from "../../hooks/atoms"
+import {ubication,user,reports} from "../../hooks/atoms"
 import {useRecoilState} from"recoil"
 import {misReportes} from "../../hooks/hooks"
 import css from"./misreportes.css"
-import {useLocalStorage} from"../../hooks/useLocalStorage"
 
 
 function MisReportes(){
-   const [reports,setReports]= useState([])
    const [myUser,serUser]=useRecoilState(user);
-    console.log(reports,"yes");
+   const [reportss,setReport]= useRecoilState(reports)
     
    useEffect(()=>{
     console.log(myUser);
     
    misReportes(myUser).then((e)=>{
     if(e[0]){
-        setReports(e[0]);
+        setReport(e[0]);
     }
    })
    },[])
@@ -25,6 +23,7 @@ function MisReportes(){
 return <>
    <div className={css.conteiner}>
     <h1>MIS REPORTES</h1>
+    {reportss?<h1>hay reportes</h1>:<p>no llo hay</p>}
    </div>
 </>
 }

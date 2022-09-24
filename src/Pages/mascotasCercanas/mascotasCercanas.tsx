@@ -3,11 +3,10 @@ import {ubication} from "../../hooks/atoms"
 import {useRecoilState} from"recoil"
 import {reportesCercanos} from "../../hooks/hooks"
 import css from"./mascotasCercanas.css"
-import {useLocalStorage} from"../../hooks/atoms"
 
 function MascotasCercanas(){
     const [results,setResults]= useState([]);
-    const [location,setLocation]= useLocalStorage("location",{estado:false})    
+    const [location,setLocation]= useRecoilState(ubication)    
 
     useEffect(()=>{
         if(location){

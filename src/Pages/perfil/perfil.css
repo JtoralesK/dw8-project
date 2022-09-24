@@ -11,6 +11,11 @@
     max-width: 1000px;
 
 }
+@media (max-width: 600px) {
+    .contenedor{
+        flex-direction: column;
+    }
+}
 .datos{
     padding: 20px;
     text-align: center;
@@ -37,4 +42,10 @@
     color:red;
     margin-top: 25px;
     padding: 5px 25px;
+}
+@media (max-width: 600px) {
+    .img{
+        width: 300px;
+        height: 300px;
+    }
 }

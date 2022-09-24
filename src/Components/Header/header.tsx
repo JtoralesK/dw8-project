@@ -2,29 +2,26 @@ import React, { useEffect, useState } from "react";
 import css from "./header.css"
 import {Link ,useNavigate } from"react-router-dom"
 import {obtieneUser} from"../../hooks/hooks"
-import {page,user,ubication} from"../../hooks/atoms"
-import {useLocalStorage} from"../../hooks/useLocalStorage"
-import { useRecoilState,useSetRecoilState} from"recoil"
+import {page,ubication,user} from"../../hooks/atoms"
+import { useRecoilState} from"recoil"
 import {pages} from"./namesPages.js"
 function Header(){
     const navigate = useNavigate() 
-    const [lookUser,serUser]=useRecoilState(user);
+    const [value, setUser] = useRecoilState(user)
+    const [pagee, setPage] = useRecoilState(page)
 
-    const [value,setLocal]= useLocalStorage("user",{})
-    const [linkPage,setPage]= useLocalStorage("page",{})
-
+    console.log(value);
+    
     const [name,setLog]=useState("");
     useEffect(()=>{
         
         if(name){  
-            console.log("se hizo click",value);
-                          
+            setUser({...value})          
             obtieneUser({token:value.token}).then((r)=>{    
                 if(!r){
                 setPage(name)
                 navigate("/login")
             }else{
-                serUser(value)
                 navigate(name)
             }})
         }

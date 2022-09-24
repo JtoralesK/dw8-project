@@ -7,25 +7,15 @@ import {MyButton} from"../../Components/ui/button/button"
 import {NewLogin} from"./newLogin/newLogin"
 import {useNavigate } from"react-router-dom"
 import {obtieneToken,obtieneUser} from"../../hooks/hooks"
-import {useLocalStorage} from"../../hooks/useLocalStorage"
 
  function Login(){  
-   const [lookUser,serUser]=useRecoilState(user)
-   const [value,setLocal]= useLocalStorage("user",{})
-   const [linkPage,setPage]= useLocalStorage("page",{})
-
-   const va:any=value
+   const [value,serUser]=useRecoilState(user)
+   const [valuePage,serPage]=useRecoilState(page)
    useEffect(()=>{
       if(value){
-         console.log("value login:",value);
          serUser(value)         
       }
    },[value])
-
-
-
-
-
 
 
     const [logged,setLogged]=useState(null);
@@ -37,8 +27,8 @@ import {useLocalStorage} from"../../hooks/useLocalStorage"
       obtieneToken({email,password}).then((e1)=>{
          obtieneUser(e1).then((e)=>{
             if(e1.token){
-               setLocal({token:e1.token,fullname:e.fullname,email:e.email})
-               navigate(linkPage)
+               serUser({token:e1.token,fullname:e.fullname,email:e.email})
+               navigate(valuePage)
             }     
          })
             

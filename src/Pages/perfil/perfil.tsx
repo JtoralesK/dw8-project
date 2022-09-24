@@ -6,16 +6,13 @@ import {user} from"../../hooks/atoms"
 import { useRecoilState} from"recoil"
 import {MyButton} from"../../Components/ui/button/button"
 import css from"./perfil.css"
-import {useLocalStorage} from"../../hooks/useLocalStorage"
 
  function Perfil(){  
    const [lookUser,serUser]=useRecoilState(user)
-   const [value,setLocal]= useLocalStorage("user",{})
    const navigate = useNavigate() 
 
    const me:any = lookUser
    const salir = ()=>{
-    setLocal({});
     serUser({});
     navigate("/");
    }
@@ -25,7 +22,7 @@ import {useLocalStorage} from"../../hooks/useLocalStorage"
     <div className={css.contenedor}>
 
       <div>
-         <img src="https://cdn.fs.teachablecdn.com/E8IhyZHBSqCrVymXCuf8" alt="" />
+         <img className={css.img} src="https://cdn.fs.teachablecdn.com/E8IhyZHBSqCrVymXCuf8" alt="" />
       </div>
 
       <div className={css.datos}>
