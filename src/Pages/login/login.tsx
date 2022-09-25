@@ -6,11 +6,13 @@ import css from"./login.css"
 import {MyButton} from"../../Components/ui/button/button"
 import {NewLogin} from"./newLogin/newLogin"
 import {useNavigate } from"react-router-dom"
-import {obtieneToken,obtieneUser} from"../../hooks/hooks"
+import {creaUsuario,obtieneUser} from"../../hooks/hooks"
 
  function Login(){  
    const [value,serUser]=useRecoilState(user)
    const [valuePage,serPage]=useRecoilState(page)
+   const {obData,data}= obtieneUser();
+
    useEffect(()=>{
       if(value){
          serUser(value)         
@@ -24,11 +26,13 @@ import {obtieneToken,obtieneUser} from"../../hooks/hooks"
       
       const email = e.email
       const password = e.password
-      obtieneToken({email,password}).then((e1)=>{
-         obtieneUser(e1).then((e)=>{
-            if(e1.token){
-               serUser({token:e1.token,fullname:e.fullname,email:e.email})
-               navigate(valuePage)
+      creaUsuario({email,password}).then((token)=>{
+         obData(token).then((user)=>{            
+            if(user.id){
+               console.log("entra o no entra");
+               
+              serUser({token:token.token,fullname:user.fullname,email:user.email})
+             navigate(valuePage)
             }     
          })
             

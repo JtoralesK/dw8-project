@@ -6,8 +6,21 @@ import css from"./home.css"
 import {Card} from "../../Components/card/card"
 import {page,user,ubication} from"../../hooks/atoms"
 import { useRecoilState} from"recoil"
+import {obtieneUser} from"../../hooks/hooks"
 
  function Home(){
+  const {obData,cargando}= obtieneUser();
+  const [cargar,setCargar]=useState(false)
+  console.log({home:cargar});
+  
+  useEffect(()=>{
+    
+    if(cargando){
+      setCargar(true)
+    }else{
+      setCargar(false)
+    }
+  },[cargando])
     return (
       <div>
         <div className={css.principal}>

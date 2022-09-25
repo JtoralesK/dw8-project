@@ -33,3 +33,7 @@ export const page = atom({
     default:[],
     effects_UNSTABLE: [persistAtom]
   });
+  export const cargar = atom({
+    key: "cargar",
+    default:false,
+  });

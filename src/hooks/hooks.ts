@@ -1,13 +1,44 @@
- export async function obtieneUser(data){
-  const url = await fetch("https://apx-desafio-mod7.herokuapp.com/user",{headers:{
+import React, { useState } from "react";
+import {atom , useRecoilState, useRecoilValue,selector} from"recoil"
+import {cargar} from"./atoms"
+
+ export  function obtieneUser(){
+  const [ca, setCargar] = useRecoilState(cargar)
+
+  const [cargando,setCargando] =useState(false)
+  const [data,setData] =useState({})
+  async function obData(data:any){
+    
+    setCargando(true)
+    console.log(data,"vamo a ver");
+    
+    if(data.token){
+      
+      const url = await  fetch("https://apx-desafio-mod7.herokuapp.com/user",{headers:{
         'Authorization':`bearer ${data.token}` }})
-        data = await url.json()
-        if(data.error){
-          return false;
-        }else{
-          return data;
-        }
+          const dataa =  await url.json()
+          if(data.error){
+            setCargando(false)
+            return false
+          }else{
+            setCargando(false)
+            return dataa
+          }
+    }else{
+      setCargando(false)
+      return false
+    }
+  
         
+        
+          
+  }
+  return{
+    cargando,
+    setCargando,
+    obData,
+    data
+  }
         
 }
 export async function auth(data){
@@ -19,7 +50,7 @@ export async function auth(data){
      body:JSON.stringify(data)})
     return json.json()
 }
-export async function obtieneToken(data){
+export async function creaUsuario(data){
   const json = await fetch("https://apx-desafio-mod7.herokuapp.com/auth/token",{
     method:"POST",
     headers:{

@@ -1,11 +1,15 @@
 
+:root {
+  --principal-color: #8dc1a7;
+  --secondary-color:#e5e5e5;
+  --third-color:#747a77;
+  --fourth-color:#d3ca9e;
+  --fiveth-color:#061d13;
+}
 .header{
     width: 100%;
     height: 60px;
-    position: sticky;
-    top:0;
-    z-index: 100;
-    background-color: rgb(100, 26, 179);
+    background-color: var(--principal-color);
     padding: 10px;
 }
 .wrapper{
@@ -43,13 +47,13 @@
     cursor: pointer;
 }
 .menuLinks:hover{
-    background-color: #343257;
+    background-color: var(--third-color);
     border-bottom: 0.3rem solid #ebc88b ;
     transition: 0.4s ease-in;
 }
 .menuLinks a{
-    color:#ebc08b;
     text-decoration: none;
+    color: black;
 }
 .abrirMenu{
     display: none;
@@ -61,4 +65,21 @@
     .abrirMenu{
         display: initial;
     }
+  }
+  .cargando{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #c9d2ce24;
+  }
+  .span{
+    width: 100px;
+    height: 500px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+  }
+  
+  .linkaso{
+    color:var(--fiveth-color)
   }
