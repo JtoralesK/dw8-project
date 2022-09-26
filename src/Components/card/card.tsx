@@ -1,19 +1,26 @@
 import React from "react";
 import css from "./card.css"
- function Card (){
+type Prop ={
+    name:String,
+    localidad:String,
+    img:string
+}
+
+ function Card (p:Prop){
     return <>
-       <div className={css.serviciosContent}>
-    <div className={css.serviciosContentCards}>
         <div className={css.serviciosCard}>
-            <img className={css.serviciosCardImg} src="https://www.ecestaticos.com/imagestatic/clipping/797/767/79776773aab795837282c7d4947abaf7/por-que-nos-parece-que-los-perros-sonrien-una-historia-de-30-000-anos.jpg?mtime=1622645511" alt="" />
+         <img className={css.serviciosCardImg} src={p.img} alt="" />
         <div className={css.info}>
-        <h4 className={css.serviciosCardTitle}>Ayudando a encontrarlos</h4>
-        <p className={css.serviciosCardP}>Mascotas perdidas.Publica aquí tu mascota perdida o busca entre las que se han reportado como perdidas.</p>
+        <h2 className={css.localidad}>{p.localidad}</h2>
+        <div className={css.linLovi}>
+        <h4 className={css.name}>{p.name}</h4>
+        <button className={css.button}>Lo vi</button>
+        </div>
         </div>
         </div>
         
-    </div>
-</div>
+ 
+
     </>
   
 }

@@ -6,9 +6,11 @@ import {page,ubication,user} from"../../hooks/atoms"
 import { useRecoilState} from"recoil"
 import {pages} from"./namesPages.js"
 import {Loader} from"../loader/loader"
+import {FaBars} from "react-icons/fa"
 function Header(){
     const navigate = useNavigate() 
     const [value, setUser] = useRecoilState(user)
+    let valuee:any=value
     const [pagee, setPage] = useRecoilState(page)
     const {obData,cargando,data}= obtieneUser();
     console.log(cargando);
@@ -19,7 +21,7 @@ function Header(){
     useEffect(()=>{
         
         if(name){  
-             obData({token:value.token}).then((e)=>{
+             obData({token:valuee.token}).then((e)=>{
                 console.log(e,"dsf");
                 if(!e){
                     setPage(name)
@@ -41,7 +43,7 @@ function Header(){
          <header className={css.header}>
         <div className={css.wrapper}>
             <div className={css.menuLinks}>
-                <Link to={"/"}>PetApx</Link>
+                <Link to={"/"}>PetApx <FaBars/></Link>
              </div>
              <button className={css.abrirMenu}>x</button>
                <ul className={css.menu}>

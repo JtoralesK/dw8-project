@@ -1,17 +1,49 @@
-.contenedorM{
-    max-width: 1100px;
-    height: 91vh;
-    margin: auto;
-   
+.body{
+min-height: 100vh;
+width: 100%;
 }
-.contenedorDeItems{
+
+.secciones{
     display: flex;
     flex-direction: row;
 }
-.title{
-    text-align: center;
+.seccionNombres{
+    min-width: 300px;
+    background-color: blanchedalmond;
+    min-height: 100vh;
+    align-items: center;
 }
-.img{
+@media (max-width: 700px) {
+    .seccionNombres{
+        display: none;
+    }
+  }
+ul li{
+    list-style: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+.listado{
+    width:80%;
+    margin: auto;
+}
+.tituloListado{
+    text-align: center;
+    margin-top: 20px;
+}
+.mascotas{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+@media (max-width: 700px) {
+    .mascotas{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+  }
+.imgAside{
     width: 200px;
     height: 200px;
 }
