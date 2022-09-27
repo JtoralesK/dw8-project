@@ -3,15 +3,9 @@ import {atom , useRecoilState, useRecoilValue,selector} from"recoil"
 import {cargar} from"./atoms"
 
  export  function obtieneUser(){
-  const [ca, setCargar] = useRecoilState(cargar)
-
   const [cargando,setCargando] =useState(false)
-  const [data,setData] =useState({})
   async function obData(data:any){
-    
-    setCargando(true)
-    console.log(data,"vamo a ver");
-    
+    setCargando(true)    
     if(data.token){
       
       const url = await  fetch("https://apx-desafio-mod7.herokuapp.com/user",{headers:{
@@ -27,17 +21,12 @@ import {cargar} from"./atoms"
     }else{
       setCargando(false)
       return false
-    }
-  
-        
-        
-          
+    }    
   }
   return{
     cargando,
-    setCargando,
     obData,
-    data
+  
   }
         
 }
@@ -59,23 +48,34 @@ export async function creaUsuario(data){
      body:JSON.stringify(data)})
     return json.json()
 }
-export async function reportesCercanos(data){
-  if(data.lat==null || data.lng==null){
-    console.error("falta la ubicacion de lng o lat")
-    return []
-  }else{
-    const lat= data.lat
-    const lng= data.lng
-    console.log(lat,lng);
-    
-    const json = await fetch("https://apx-desafio-mod7.herokuapp.com/reportes-cerca-de?lat="+lat+"&lng="+lng)
-      const info =  json.json()
-      try{        
-        return info
-      }catch(error){
-        return error
-      }
+export  function reportesCercanos(){
+  const [cargando,setCargando] =useState(false)
+  async function obData(data:any){
+    setCargando(true)    
+    if(data.lat==null || data.lng==null){
+      console.error("falta la ubicacion de lng o lat")
+      setCargando(false)    
+      return []
+    }else{
+      const lat= data.lat
+      const lng= data.lng
+      console.log(lat,lng);
+      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/reportes-cerca-de?lat="+lat+"&lng="+lng)
+        const info =  json.json()
+        try{
+          setCargando(false)            
+          return info
+        }catch(error){
+          setCargando(false)    
+          return error
+        }
+    }
   }
+  return{
+    cargando,
+    obData,
+  }
+
  
 }
 export async function misReportes(data){

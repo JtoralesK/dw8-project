@@ -6,14 +6,14 @@ import css from"./mascotasCercanas.css"
 import {Card} from"../../Components/card/card"
 function MascotasCercanas(){
     const [results,setResults]= useState([]);
+    const {obData,cargando}=reportesCercanos()
     const [location,setLocation]= useRecoilState(ubication)    
-    console.log(results);
-    
+  
     useEffect(()=>{
         if(location){
-            reportesCercanos(location).then((e)=>{                
+            obData(location).then((e)=>{                
                 setResults(e);
-            })
+            }) 
         }
     },[location])
 
@@ -43,28 +43,21 @@ return <>
 
       <div className={css.body}>
         <div className={css.secciones}>
-        <aside className={css.seccionNombres}>
-        {location.estado
-         ?
-         <>  
+        <aside className={css.seccionNombres}> 
           <div className={css.listado}>
           <h2 className={css.tituloListado}>Listado de mascotas</h2>
-
           <ul>
           {results.map((e)=>{
-                if(e){
+                if(e){ 
                     return  <li key={e.objectID}>{e.petName},{e.location}</li>
-                }else{
-                    return <h1>No hay mascotas cerca tuyo</h1>
                 }
             })}
           </ul>
-           </div>
-         </>
-       
-        :<p>Falta dar ubicacion</p>}
+         </div>
         </aside>
+        
         <article>
+        {cargando?<h1>cargando...</h1>:null}    
         {location.estado
          ?
          <>
@@ -87,17 +80,3 @@ return <>
 </>
 }
 export {MascotasCercanas}
-/*{results.map((e)=>{  
-    console.log(e);
-              
- if(e){
-return <div key={e.objectID}>
-    <h1 >{e.petName}</h1>
-    <img className={css.img} src={e.url} alt="" />
-    <h2>Location:{e.location}</h2>
-</div>
-}else{
-return <h1>No hay mascotas reportadas cerca tuyo</h1>
- }
- })}*/
- //        <button onClick={giveUbication}>Dar ubicacion</button>

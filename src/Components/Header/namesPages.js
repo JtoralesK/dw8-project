@@ -9,6 +9,9 @@ export const pages =[
  }, {
    page: "/misReportes",
    name:"Mis Reportes"
+}, {
+   page: "/mascotasCercanas",
+   name:"Mascotas Cercanas"
 }
 
 ]

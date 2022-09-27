@@ -6,61 +6,34 @@ import {page,ubication,user} from"../../hooks/atoms"
 import { useRecoilState} from"recoil"
 import {pages} from"./namesPages.js"
 import {Loader} from"../loader/loader"
-import {FaBars} from "react-icons/fa"
 function Header(){
     const navigate = useNavigate() 
     const [value, setUser] = useRecoilState(user)
     let valuee:any=value
     const [pagee, setPage] = useRecoilState(page)
-    const {obData,cargando,data}= obtieneUser();
-    console.log(cargando);
-
+    const {obData,cargando}= obtieneUser();
     const [name,setLog]=useState("");
-    console.log(data);
     
-    useEffect(()=>{
-        
+    useEffect(()=>{   
         if(name){  
-             obData({token:valuee.token}).then((e)=>{
-                console.log(e,"dsf");
-                if(!e){
-                    setPage(name)
-                    navigate("/login")
-                }else{
-                    navigate(name)
+            //reportes cercanos            
+            if(name==="/mascotasCercanas"){
+                navigate(name);
+            }else{
+                obData({token:valuee.token}).then((e)=>{
+                    console.log(e,"dsf");
+                    if(!e){
+                        setPage(name)
+                        navigate("/login")
+                    }else{
+                        navigate(name)
+                    }
+                 })
+            }
 
-                }
-              
-              
-             })
-          
         }
     },[name])
-    return <>
-    {cargando
-     ? 
-     <div>
-         <header className={css.header}>
-        <div className={css.wrapper}>
-            <div className={css.menuLinks}>
-                <Link to={"/"}>PetApx <FaBars/></Link>
-             </div>
-             <button className={css.abrirMenu}>x</button>
-               <ul className={css.menu}>
-               {pages.map((e)=>{
-                return <li onClick={()=>{setLog(e.page)}} key={e.name} className={css.menuLinks}>{e.name}</li>
-               })}
-              <li className={css.menuLinks}> <Link   to={"/mascotasCercanas"}><p className={css.linkaso}>Mascotas Cercanas</p></Link></li>
-               </ul>
-        </div>
-    </header>
-   <div className={css.cargando}>
-   <div className={css.span}>
-    <span><Loader/></span>
-   </div>
-   </div>
-     </div>
-     :
+    return <> 
      <header className={css.header}>
         <div className={css.wrapper}>
             <div className={css.menuLinks}>
@@ -71,10 +44,19 @@ function Header(){
                {pages.map((e)=>{
                 return <li onClick={()=>{setLog(e.page)}} key={e.name} className={css.menuLinks}>{e.name}</li>
                })}
-              <li className={css.menuLinks}> <Link  to={"/mascotasCercanas"}>Mascotas Cercanas</Link></li>
                </ul>
         </div>
-    </header>}
+
+        { cargando
+        ?
+        <div className={css.cargando}>
+        <div className={css.span}>
+        <span><Loader/></span>
+        </div>
+        </div>
+        :null}
+
+    </header>
     
     </> 
 }
