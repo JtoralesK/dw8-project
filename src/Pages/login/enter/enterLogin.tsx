@@ -3,6 +3,7 @@ import {MyButton} from"../../../Components/ui/button/button"
 import css from"./enter.css"
 type Prop = {
     submit?:(any)=>any
+    cambiarForm?:(any)=>any
 }
  function Enter(p:Prop){  
     const handle = (e)=>{
@@ -12,15 +13,23 @@ type Prop = {
             p.submit({email:target.email.value,password:target.password.value})
         }
     }
+    const click = ()=>{
+        if(p.cambiarForm){
+            p.cambiarForm((e)=>{!e})
+        }
+    }
     return (
      <>
-       <form className={css.form} onSubmit={handle}>
+      <div className={css.conteiner}>
+      <form className={css.form} onSubmit={handle}>
         <input name="email" className={css.input} type="email" placeholder="Email"/>
         <input name="password" className={css.input} type="password" placeholder="password" />
         <MyButton name="Iniciar Sesion"></MyButton>
-       <a ><h3 className={css.lostPassword}>¿Has olvidado la contraseña?</h3></a>
        <div className={css.linea}></div>
        </form>
+       <MyButton click={click} name="Crear nueva cuenta"></MyButton>
+      </div>
+
      </>
         )
  }    

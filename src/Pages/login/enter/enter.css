@@ -1,12 +1,13 @@
+.conteiner{
+  width: 300px;
+  height: 300px;
+  align-items: center;
+}
 .form{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 350px;
-    height: 300px;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
+    margin-bottom: 30px;
   }
   .input{
     width: 90%;

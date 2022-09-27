@@ -11,7 +11,8 @@ import {creaUsuario,obtieneUser} from"../../hooks/hooks"
  function Login(){  
    const [value,serUser]=useRecoilState(user)
    const [valuePage,serPage]=useRecoilState(page)
-   const {obData,data}= obtieneUser();
+   const {obData}= obtieneUser();
+   const [someForm,setSomeForm]= useState(true);
 
    useEffect(()=>{
       if(value){
@@ -30,7 +31,6 @@ import {creaUsuario,obtieneUser} from"../../hooks/hooks"
          obData(token).then((user)=>{            
             if(user.id){
                console.log("entra o no entra");
-               
               serUser({token:token.token,fullname:user.fullname,email:user.email})
              navigate(valuePage)
             }     
@@ -43,25 +43,26 @@ import {creaUsuario,obtieneUser} from"../../hooks/hooks"
 
 
     //abre card new cuenta
-    const [active,setActive]=useState(false)
-    const datosNewCuenta = ()=>{
-      setActive(!active)
+    const cambiarForm = ()=>{
+      setSomeForm(!someForm)
     }
-
-    const salir = ()=>{
-        setActive(!active)
-    }
+    const crea = ()=>{}
+   
     return (
      <>
      <section className={css.bodyy}>
         <div className={css.loginSection}>
-        <img className={css.img} src="https://www.nami.org/NAMI/media/NAMI-Media/BlogImageArchive/2020/human-animal-bond-blog.jpg" alt="" />
+        <img className={css.img} src="https://stardatelogs.com/images/user/login.png" alt="" />
         <div className={css.cardLog}>
-        <Enter submit={enter} ></Enter>
-        <MyButton click={datosNewCuenta} name="Crear nueva cuenta"></MyButton>
+         {someForm
+         ?
+          <Enter submit={enter} cambiarForm={cambiarForm} ></Enter>
+         :
+         <NewLogin submit={crea} cambiarForm={cambiarForm}  ></NewLogin>
+         }
         </div> 
         </div>
-        <NewLogin active={active} salir={salir} ></NewLogin>
+       
      </section>
      </>
         )
