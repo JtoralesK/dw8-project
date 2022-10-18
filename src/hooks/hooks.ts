@@ -88,3 +88,34 @@ export async function misReportes(data){
       return error
     }
 }
+export  function actualizarPerfil(){
+  const [cargando,setCargando] =useState(false)
+  async function actualiza(name:string,email:string,token:string){
+    setCargando(true)    
+    if((name || email) && token){
+      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/editar-perfil",{
+        method:"PUT",
+        headers:{
+          'Authorization':`bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+         body:JSON.stringify({name,email})})
+          const info= json.json()
+          try{
+            setCargando(false)                    
+            return info
+          }catch(error){
+            setCargando(false)            
+            return error
+          }
+    }else{
+      console.error("falta data")
+      setCargando(false)    
+      return []
+    }
+  }
+  return{
+    cargando,
+    actualiza,
+  }
+}
