@@ -1,4 +1,6 @@
-
+body{
+  margin:0
+}
 :root {
   --principal-color: #8dc1a7;
   --secondary-color:#e5e5e5;
@@ -11,30 +13,19 @@
     height: 60px;
     background-color: var(--principal-color);
     padding: 10px;
-    z-index: 10;
+    z-index: 100;
 }
 .wrapper{
-    height: 100%;
     max-width: 1000px;
     margin:auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    padding: 5px;
-}
-.icon{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-
 }
 
 .menu{
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     height: 100%;
 }
 .menuLinks{
@@ -54,18 +45,44 @@
 }
 .menuLinks a{
     text-decoration: none;
-    color: black;
 }
-.abrirMenu{
+.abrir, .menuMovile{
     display: none;
 }
+
 @media (max-width: 900px) {
-    .menu{
-      display: none;
-    }
-    .abrirMenu{
-        display: initial;
-    }
+  .abrir{
+    display: initial;
+}
+  .header{
+    padding: 0;
+  }
+  .menu{
+    display: none;
+    align-items: center;
+  }
+   
+  .menuMovile{
+    width: 100% ;
+    position: relative;
+    background-color: var(--third-color);
+
+  }   
+  .menuMovile ul{
+    padding: 10px 0;
+  }
+  .menuM li{
+    margin: 10px 0;
+    list-style-type: none;
+    text-align: center;
+    padding: 15px;
+    background-color: var(--fourth-color);  
+    width: 100%;
+  }
+
+
+
+
   }
   .cargando{
     position: absolute;

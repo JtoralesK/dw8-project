@@ -28,10 +28,10 @@ img{
     flex-direction: column;
 
   }
-  img{
-    margin-top: 40px;
+  .img{
     width: 300px; 
     height:300px;
+    margin-top: 50px;
    }
 }
 

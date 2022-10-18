@@ -5,6 +5,7 @@
     height: 100%;
 }
 .cajaTitulo{
+    margin-top: 40px;
     padding: 30px;
     max-width: 600px;
     align-items: center;

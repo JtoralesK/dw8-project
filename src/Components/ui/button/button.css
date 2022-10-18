@@ -1,8 +1,11 @@
+
 .buttonMy{
     font-weight: bold;
     font-size: 20px;
     width: 90%;
     padding: 14px 16px;
     border-radius: 12px ;
+    border: 1px solid black;
+    text-align: center;
+    background-color: bisque;
   }
- 

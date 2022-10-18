@@ -12,8 +12,13 @@ width: 100%;
     background-color: blanchedalmond;
     min-height: 100vh;
     align-items: center;
+
 }
 @media (max-width: 700px) {
+    .secciones{
+        justify-content: center;
+
+    }
     .seccionNombres{
         display: none;
     }
@@ -35,6 +40,9 @@ ul li{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    margin-top: 50px;
+    justify-content: center;
+
 }
 @media (max-width: 700px) {
     .mascotas{

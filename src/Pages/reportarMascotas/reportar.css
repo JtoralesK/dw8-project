@@ -12,6 +12,13 @@
     border: 1px solid red;
 
 }
+@media (max-width: 600px) {
+    .reportConteiner{
+        flex-direction: column;
+   
+    
+    }
+}
 .form{
     display: flex;
     flex-direction: column;
