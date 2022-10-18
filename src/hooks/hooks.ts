@@ -119,3 +119,34 @@ export  function actualizarPerfil(){
     actualiza,
   }
 }
+export  function actualizarPassword(){
+  const [cargando,setCargando] =useState(false)
+  async function actualiza(passwordVieja:string,passwordNueva:string,passwordNuevaConfirmar:string,token:string){
+    setCargando(true)    
+    if(passwordVieja && passwordNueva && passwordNuevaConfirmar && token){
+      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/change-password",{
+        method:"PUT",
+        headers:{
+          'Authorization':`bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+         body:JSON.stringify({passwordVieja,passwordViejaConfirmar:passwordVieja,passwordNueva,passwordNuevaConfirmar})})
+          const info= json.json()
+          try{
+            setCargando(false)                    
+            return info
+          }catch(error){
+            setCargando(false)            
+            return error
+          }
+    }else{
+      console.error("falta data")
+      setCargando(false)    
+      return []
+    }
+  }
+  return{
+    cargando,
+    actualiza,
+  }
+}
