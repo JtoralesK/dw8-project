@@ -4,7 +4,7 @@ import {user} from"../../hooks/atoms"
 import { useRecoilState} from"recoil"
 import {MyButton} from"../../Components/ui/button/button"
 import css from"./perfil.css"
-import {actualizarPerfil,obtieneUser}from"../../hooks/hooks"
+import {actualizarPerfil,obtieneUser,actualizarPassword}from"../../hooks/hooks"
 import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
 
  function Perfil(){  
@@ -13,12 +13,28 @@ import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
    const [mePassWord, setMePassword]=useState(false)
    const {obData}= obtieneUser();
    const {cargando,actualiza}=actualizarPerfil()
-  
+   const {cargandoPassword,actualizaPassword}=actualizarPassword()
+
    const navigate = useNavigate() 
    const me:any = lookUser
    const salir = ()=>{
     serUser({});
     navigate("/");
+   }
+   const editarPassword = (e)=>{
+    e.preventDefault();
+    const {antiguaPassword,nuevaPassword,passwordConfirmar}=e.target
+    console.log(antiguaPassword.value,nuevaPassword.value,passwordConfirmar.value);
+    actualizaPassword(antiguaPassword.value,nuevaPassword.value,passwordConfirmar.value,lookUser.token).then(data => {
+      obData({token:lookUser.token}).then((user)=>{
+        if(user.id){
+         setMeInfo(false);setMePassword(false)
+       }    
+      })
+    }).catch((error)=>{
+      console.error(error)
+      setMeInfo(false);setMePassword(false)
+    });
    }
    //editar perfil
     const editarPerfil = (e)=>{
@@ -59,23 +75,23 @@ import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
       </div>
 
       <div className={css.editar} style={meInfo || mePassWord ?{display:"initial"}:null}>
-      <form  className={css.editarPassword} style={mePassWord?{display:"initial"}:{display:"none"}}>
+      <form onSubmit={editarPassword} className={css.editarPassword} style={mePassWord?{display:"initial"}:{display:"none"}}>
         <div className={css.editarInputs}> 
         <h1 className={css.titleEditar}>Editar Password</h1>
-        <input type="text" placeholder="Antigua Password" />
-        <input type="text" placeholder="Nuevo Password" />
-        <input type="text" placeholder="Repetir password" />
+        <input type="password" placeholder="Antigua Password" name="antiguaPassword" required />
+        <input type="password" placeholder="Nuevo Password" name="nuevaPassword" required/> 
+        <input type="password" placeholder="Repetir password" name="passwordConfirmar" required/>
         <MyButton name="Guardar Cambios" ></MyButton>
-        <LoaderPuntito state={cargando}></LoaderPuntito>
+        <LoaderPuntito state={cargando || cargandoPassword}></LoaderPuntito>
         </div>
        </form>
        <form onSubmit={editarPerfil} className={css.editarPerfil} style={meInfo?{display:"initial"}:{display:"none"}} >
         <div className={css.editarInputs}> 
         <h1 className={css.titleEditar}>Editar Perfil</h1>
-        <input type="text" placeholder="Nuevo Nombre" name="name" />
+        <input type="text" placeholder="Nuevo Nombre" name="name"  />
         <input type="email" placeholder="Nuevo Email" name="email" />
         <MyButton name="Guardar Cambios" ></MyButton>
-        <LoaderPuntito state={cargando}></LoaderPuntito>
+        <LoaderPuntito state={cargando || cargandoPassword}></LoaderPuntito>
 
         </div>
        </form>
