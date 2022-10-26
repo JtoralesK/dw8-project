@@ -34,7 +34,7 @@
   .progress {
     height: 25px;
     width: 90%;
-    border: 1px solid #d3ca9e;
+    border: 1px solid #751061;
     border-radius: 5px;
     background-color: #e6f3fa;
     margin-bottom: 15px;
@@ -42,7 +42,7 @@
  
 .progressBar{
     height: 100%;
-    background: #d3ca9e;
+    background: #751061;
     display: flex;
     align-items: center;
     transition: width 0.25s;

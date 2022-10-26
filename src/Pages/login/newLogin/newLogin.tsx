@@ -10,9 +10,9 @@ type Prop = {
    
     const handle = (e)=>{
         e.preventDefault();
-        const target = e.target;
+        const {email,password,fullname} = e.target;
         if(p.submit){
-            p.submit({email:target.email.value,password:target.password.value})
+            p.submit({email:email.value,password:password.value,fullname:fullname.value})
         }
     }
     const click = ()=>{
@@ -24,7 +24,7 @@ type Prop = {
      <>
         <div className={css.conteiner}>
         <form className={css.form} onSubmit={handle}>
-        <input name="fullName" className={css.input} type="text" placeholder="Nombre Completo"/>
+        <input name="fullname" className={css.input} type="text" placeholder="Nombre Completo"/>
         <input name="email" className={css.input} type="text" placeholder="Email"/>
         <input name="password" className={css.input} type="password" placeholder="password" />
         <MyButton name="Crear Cuenta"></MyButton>

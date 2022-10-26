@@ -30,22 +30,31 @@ import {cargar} from"./atoms"
   }
         
 }
-export async function auth(data){
-  const json = await fetch("https://apx-desafio-mod7.herokuapp.com/auth",{
-    method:"POST",
-    headers:{
-      'Content-Type': 'application/json'
-    },
-     body:JSON.stringify(data)})
-    return json.json()
+export async function crearUsuario(email:string,password:string,fullname:string){
+  console.log(email,password,fullname);
+  
+  if(email==null || password==null || fullname==null ){
+    console.error("falta data")
+    return []
+  }else{
+    const json = await fetch("https://apx-desafio-mod7.herokuapp.com/auth",{
+      method:"POST",
+      headers:{
+        'Content-Type': 'application/json'
+      },
+       body:JSON.stringify({email,password,fullname})})
+      const info= json.json()
+      try{
+        return info
+      }catch(error){
+        return error
+      }
+  }
+
 }
-export  function iniciarUsuario(){
-  const [cargandoUser,setCargando] =useState(false)
-  async function obDataUser(email,password){
-    setCargando(true)    
+export async function iniciarUsuario(email,password){
     if(email==null || password==null){
-      console.error("falta data")
-      setCargando(false)    
+      console.error("falta email o password")
       return []
     }else{
       const json = await fetch("https://apx-desafio-mod7.herokuapp.com/auth/token",{
@@ -56,20 +65,15 @@ export  function iniciarUsuario(){
          body:JSON.stringify({email,password})})
         const info =  json.json()
         try{
-          setCargando(false)            
           return info
         }catch(error){
-          setCargando(false)    
           return error
         }
     }
   }
-  return{
-    cargandoUser,
-    obDataUser,
-  }
+  
 
-}
+
 export  function reportesCercanos(){
   const [cargando,setCargando] =useState(false)
   async function obData(data:any){

@@ -15,12 +15,8 @@ export function LoaderPuntito(p:Prop){
                         clearInterval(id);
                     }
                     i++;
-                }, 200);   
-               
-             
-            
-           
-            
+                }, 50);   
+                
         }
     },[p.state])
 
