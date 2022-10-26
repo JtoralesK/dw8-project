@@ -11,8 +11,6 @@ function MisReportes(){
    const [results,setReport]= useRecoilState(reports)
     
    useEffect(()=>{
-    console.log(myUser);
-    
    misReportes(myUser).then((e)=>{
     if(e[0]){
         setReport(e[0]);

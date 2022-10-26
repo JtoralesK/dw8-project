@@ -1,56 +1,56 @@
 .loader, .loader:before, .loader:after {
-    border-radius: 50%;
-    width: 2.5em;
-    height: 2.5em;
-    animation-fill-mode: both;
-    animation: bblFadInOut 1.8s infinite ease-in-out;
-  }
-  .loader {
-    color: darkmagenta;
-    font-size: 7px;
-    position: relative;
-    text-indent: -9999em;
-    transform: translateZ(0);
-    animation-delay: -0.16s;
-  }
-  .loader:before,
-  .loader:after {
-    content: '';
-    position: absolute;
-    top: 0;
-  }
-  .loader:before {
-    left: -3.5em;
-    animation-delay: -0.32s;
-  }
-  .loader:after {
-    left: 3.5em;
-  }
-  
-  @keyframes bblFadInOut {
-    0%, 80%, 100% { box-shadow: 0 2.5em 0 -1.3em }
-    40% { box-shadow: 0 2.5em 0 0 }
-  }
-  .progress {
-    height: 25px;
-    width: 90%;
-    border: 1px solid #751061;
-    border-radius: 5px;
-    background-color: #e6f3fa;
-    margin-bottom: 15px;
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  animation-fill-mode: both;
+  animation: bblFadInOut 1.8s infinite ease-in-out;
 }
- 
+.loader {
+  color: darkmagenta;
+  font-size: 7px;
+  position: relative;
+  text-indent: -9999em;
+  transform: translateZ(0);
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.loader:before {
+  left: -3.5em;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 3.5em;
+}
+
+@keyframes bblFadInOut {
+  0%, 80%, 100% { box-shadow: 0 2.5em 0 -1.3em }
+  40% { box-shadow: 0 2.5em 0 0 }
+}
+.progress {
+  height: 25px;
+  width: 90%;
+  border: 1px solid #751061;
+  border-radius: 5px;
+  background-color: #e6f3fa;
+  margin-bottom: 15px;
+}
+
 .progressBar{
-    height: 100%;
-    background: #751061;
-    display: flex;
-    align-items: center;
-    transition: width 0.25s;
-    border-radius: 5px;
+  height: 100%;
+  background: #751061;
+  display: flex;
+  align-items: center;
+  transition: width 0.25s;
+  border-radius: 5px;
 }
- 
+
 .progressBarText {
-    margin-left: 10px;
-    font-weight: bold;
-    color: #cce7f5;
+  margin-left: 10px;
+  font-weight: bold;
+  color: #cce7f5;
 }

@@ -82,7 +82,7 @@ import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
          :
          <NewLogin submit={crea} cambiarForm={cambiarForm}  ></NewLogin>
          }
-         <LoaderPuntito state={cargandoUser}></LoaderPuntito>
+        <LoaderPuntito state={cargandoUser}></LoaderPuntito>
         </div> 
         </div>
        </div>
