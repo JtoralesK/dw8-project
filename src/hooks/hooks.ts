@@ -39,14 +39,36 @@ export async function auth(data){
      body:JSON.stringify(data)})
     return json.json()
 }
-export async function creaUsuario(data){
-  const json = await fetch("https://apx-desafio-mod7.herokuapp.com/auth/token",{
-    method:"POST",
-    headers:{
-      'Content-Type': 'application/json'
-    },
-     body:JSON.stringify(data)})
-    return json.json()
+export  function iniciarUsuario(){
+  const [cargandoUser,setCargando] =useState(false)
+  async function obDataUser(email,password){
+    setCargando(true)    
+    if(email==null || password==null){
+      console.error("falta data")
+      setCargando(false)    
+      return []
+    }else{
+      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/auth/token",{
+        method:"POST",
+        headers:{
+          'Content-Type': 'application/json'
+        },
+         body:JSON.stringify({email,password})})
+        const info =  json.json()
+        try{
+          setCargando(false)            
+          return info
+        }catch(error){
+          setCargando(false)    
+          return error
+        }
+    }
+  }
+  return{
+    cargandoUser,
+    obDataUser,
+  }
+
 }
 export  function reportesCercanos(){
   const [cargando,setCargando] =useState(false)
@@ -148,5 +170,36 @@ export  function actualizarPassword(){
   return{
     cargandoPassword,
     actualizaPassword,
+  }
+}
+export  function creaReporte(){
+  const [cargandoImg,setCargandoImg] =useState(false)
+  async function creaReport(img:string,token:string){
+    setCargandoImg(true)    
+    if(img){
+      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/profile",{
+        method:"POST",
+        headers:{
+          'Authorization':`bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+         body:JSON.stringify({img})})
+          const info= json.json()
+          try{
+            setCargandoImg(false)                    
+            return info
+          }catch(error){
+            setCargandoImg(false)            
+            return error
+          }
+    }else{
+      console.error("falta data")
+      setCargandoImg(false)    
+      return []
+    }
+  }
+  return{
+    cargandoImg,
+    creaReport,
   }
 }

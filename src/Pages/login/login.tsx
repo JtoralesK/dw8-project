@@ -6,12 +6,16 @@ import css from"./login.css"
 import {MyButton} from"../../Components/ui/button/button"
 import {NewLogin} from"./newLogin/newLogin"
 import {useNavigate } from"react-router-dom"
-import {creaUsuario,obtieneUser} from"../../hooks/hooks"
+import {iniciarUsuario,obtieneUser} from"../../hooks/hooks"
+import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
 
  function Login(){  
    const [value,serUser]=useRecoilState(user)
    const [valuePage,serPage]=useRecoilState(page)
-   const {obData}= obtieneUser();
+   const {obData,cargando}= obtieneUser();
+   const {obDataUser}= iniciarUsuario();
+   const [cargandoUser,setCargando] =useState(false)
+
    const [someForm,setSomeForm]= useState(true);
 
    useEffect(()=>{
@@ -24,16 +28,18 @@ import {creaUsuario,obtieneUser} from"../../hooks/hooks"
     const [logged,setLogged]=useState(null);
     const navigate = useNavigate() 
     const enter =(e)=>{    
-      
+      setCargando(true);
       const email = e.email
       const password = e.password
-      creaUsuario({email,password}).then((token)=>{
+      obDataUser(email,password).then((token)=>{
          obData(token).then((user)=>{            
             if(user.id){
-               console.log("entra o no entra");
+             setCargando(false);
               serUser({token:token.token,fullname:user.fullname,email:user.email})
              navigate(valuePage)
-            }     
+            }    
+            setCargando(false);
+ 
          })
             
       })
@@ -51,8 +57,9 @@ import {creaUsuario,obtieneUser} from"../../hooks/hooks"
     return (
      <>
      <section className={css.bodyy}>
-        <div className={css.loginSection}>
-        <img className={css.img} src="https://stardatelogs.com/images/user/login.png" alt="" />
+       <div className={css.contenedor}>
+       <div className={css.loginSection}>
+        <img className={css.imgLogin} src="https://stardatelogs.com/images/user/login.png" alt="" />
         <div className={css.cardLog}>
          {someForm
          ?
@@ -60,8 +67,10 @@ import {creaUsuario,obtieneUser} from"../../hooks/hooks"
          :
          <NewLogin submit={crea} cambiarForm={cambiarForm}  ></NewLogin>
          }
+         <LoaderPuntito state={cargandoUser}></LoaderPuntito>
         </div> 
         </div>
+       </div>
        
      </section>
      </>

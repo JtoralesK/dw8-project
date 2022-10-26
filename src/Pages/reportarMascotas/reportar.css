@@ -1,10 +1,12 @@
+.body{
+    height: 90vh;
+
+}
 .conteiner{
-    height: 87vh;
-    padding: 50px;
 }
 .reportConteiner{
     width: 70%;
-    margin:auto;
+    margin: 50px auto;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -15,7 +17,7 @@
 @media (max-width: 600px) {
     .reportConteiner{
         flex-direction: column;
-   
+        gap: 50px
     
     }
 }
@@ -23,8 +25,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 300px;
-    width: 300px;
 }
 .ingresarImg{
     display: flex;

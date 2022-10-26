@@ -1,0 +1,12 @@
+.dropzone{
+    border: 3px dashed #e4cdcd;
+    border-radius: 5px;
+    color: #7d6c6c;
+    height: 142px;
+   width: 100%;
+   background-size: cover;
+}
+.img{
+    height: 140px;
+    width: 100%;
+}

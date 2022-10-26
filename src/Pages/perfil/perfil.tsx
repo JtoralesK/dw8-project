@@ -60,7 +60,7 @@ import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
     <section  className={css.perfil}>
     <div className={css.contenedor} >
       <div>
-         <img className={css.img} src="https://cdn.fs.teachablecdn.com/E8IhyZHBSqCrVymXCuf8" alt="" />
+         <img className={css.imgPerfil} src="https://cdn.fs.teachablecdn.com/E8IhyZHBSqCrVymXCuf8" alt="" />
       </div>
 
       <div className={css.datos} style={meInfo || mePassWord ?{display:"none"}:null}>
