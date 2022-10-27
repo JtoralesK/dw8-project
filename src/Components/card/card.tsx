@@ -5,9 +5,17 @@ type Prop ={
     localidad:String,
     img:string
     nameButon:string
+    onClick?:(any)=>any
 }
 
  function Card (p:Prop){
+    const presion = ()=>{
+        console.log("assd");
+        
+        if(p.onClick){
+            p.onClick({name:"javier"})
+        }
+    }
     return <>
         <div className={css.serviciosCard}>
          <img className={css.serviciosCardImg} src={p.img} alt="" />
@@ -15,7 +23,7 @@ type Prop ={
         <h2 className={css.localidad}>{p.localidad}</h2>
         <div className={css.linLovi}>
         <h4 className={css.name}>{p.name}</h4>
-        <button className={css.button}>{p.nameButon}</button>
+        <button onClick={presion} className={css.button}>{p.nameButon}</button>
         </div>
         </div>
         </div>

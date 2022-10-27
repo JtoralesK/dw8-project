@@ -17,6 +17,10 @@ function MisReportes(){
     }
    })
    },[])
+    const editar=(e)=>{
+        console.log("editar");
+    }
+        
     
     
 return <>
@@ -28,7 +32,7 @@ return <>
     <>
       {results.map((e)=>{
                 if(e){                    
-                    return <div key={e.id}><Card name={e.petName} localidad={e.location} img={e.url} nameButon={"Editar"}/></div>
+                    return <div key={e.id}><Card onClick={editar} name={e.petName} localidad={e.location} img={e.url} nameButon={"Editar"}/></div>
                 }
             })}
     </>

@@ -4,6 +4,7 @@ import {useRecoilState} from"recoil"
 import {reportesCercanos} from "../../hooks/hooks"
 import css from"./mascotasCercanas.css"
 import {Card} from"../../Components/card/card"
+import {giveUbication} from"../../Components/giveUbication/giveUbication"
 function MascotasCercanas(){
     const [results,setResults]= useState([]);
     const {obData,cargando}=reportesCercanos()
@@ -17,29 +18,14 @@ function MascotasCercanas(){
             }) 
         }
     },[location])
-
-    const giveUbication = ()=>{
-        function success(position) {
-            const latitude  = position.coords.latitude;
-            const longitude = position.coords.longitude;
-           setLocation({lng:longitude,lat:latitude,estado:true})
-        }
-          function error(err) {
-            console.log(err.code,err.message);
-            console.warn("algo salio mal");
-            setLocation({lng:null,lat:null,estado:false})
-          }
-          if (navigator.geolocation) {
-            console.log("Locating…");
-            
-            navigator.geolocation.getCurrentPosition(success, error);
-        } else {
-            console.error("Geolocation is not supported by your browser")
-
-          }
-          
-    
+    const dar =()=>{
+      giveUbication(setLocation)
     }
+   
+    const loVi=(e)=>{
+      console.log("lo vi",e);
+  }
+
 return <>
 
       <div className={css.body}>
@@ -66,7 +52,7 @@ return <>
            {results.map((e)=>{
             
                 if(e){
-                    return <div key={e.objectID}><Card name={e.petName} localidad={e.location} img={e.url} nameButon={"Lo vi"}/></div>
+                    return <div key={e.objectID}><Card onClick={()=>{loVi(e)}} name={e.petName} localidad={e.location} img={e.url} nameButon={"Lo vi"}/></div>
                 }else{
                     return <h1>No hay mascotas cerca tuyo</h1>
                 }
@@ -74,7 +60,7 @@ return <>
            </div>
          </>
        
-        :<button onClick={giveUbication}>Dar ubicacion</button>}
+        :<button onClick={dar}>Dar ubicacion</button>}
         </article>
         </div>
       </div>
