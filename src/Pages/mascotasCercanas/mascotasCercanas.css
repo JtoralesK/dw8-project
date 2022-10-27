@@ -42,19 +42,18 @@ ul li{
     text-align: center;
     margin-top: 20px;
 }
-.mascotas{
+.mascotasCercanas,.cardMascotavista{
     display: flex;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 30px;
     justify-content: center;
     flex-direction: column;
 
 }
 @media (min-width: 700px) {
-    .mascotas{
+    .mascotasCercanas{
         flex-direction: row;
         margin-top: 0px;
-
     }
   }
 .imgAside{
@@ -62,10 +61,8 @@ ul li{
     height: 200px;
 }
 
-
-
 .cargando{
-    background-color: #e5e5e5;
+    background-color: #e5e5e59b;
     width: 100%;
     min-height: 100vh;
 }

@@ -9,9 +9,7 @@ type Prop ={
 }
 
  function Card (p:Prop){
-    const presion = ()=>{
-        console.log("assd");
-        
+    const presion = ()=>{        
         if(p.onClick){
             p.onClick({name:"javier"})
         }

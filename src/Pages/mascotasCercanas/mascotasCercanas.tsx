@@ -6,11 +6,19 @@ import css from"./mascotasCercanas.css"
 import {Card} from"../../Components/card/card"
 import {giveUbication} from"../../Components/giveUbication/giveUbication"
 import {Loader} from"../../Components/loader/loader"
+import {SeccionViMascota} from"../../Components/seccionViMascota/seccionViMascota"
+type CardType ={
+  name?:String,
+  img?:string
+}
 function MascotasCercanas(){
     const [results,setResults]= useState([]);
     const {obData,cargando}=reportesCercanos()
     const [location,setLocation]= useRecoilState(ubication)    
-
+    const [cardSeleccionada,setCardSeleccionada]= useState(false);
+    const [cardData,setCardData]=useState<CardType>({})
+    console.log(cardData);
+    
     useEffect(()=>{
         if(location){
             obData(location).then((e)=>{  
@@ -23,8 +31,12 @@ function MascotasCercanas(){
       giveUbication(setLocation)
     }
    
-    const loVi=(e)=>{
-      console.log("lo vi",e);
+    const loVi=(e?)=>{
+      setCardSeleccionada(!cardSeleccionada);
+      console.log(e);
+      if(e){
+        setCardData({name:e.petName,img:e.url})
+      }
   }
 
 return <>
@@ -55,15 +67,25 @@ return <>
         {location.estado
          ?
          <>
-           <div className={css.mascotas} style={{display:"flex"}}>
-           {results.map((e)=>{
+           <div className={css.cardMascotavista}  >
+            {cardSeleccionada
+            ?
+            <SeccionViMascota name={cardData.name} img={cardData.img} onClick={()=>{loVi()}} />
+            :
+           <div className={css.mascotasCercanas}>
+             {results.map((e)=>{
             
-                if(e){
-                    return <div key={e.objectID}><Card onClick={()=>{loVi(e)}} name={e.petName} localidad={e.location} img={e.url} nameButon={"Lo vi"}/></div>
-                }else{
-                    return <h1>No hay mascotas cerca tuyo</h1>
-                }
-            })}
+            if(e){
+                return <div style={cardSeleccionada?{display:"none"}:{display:"initial"}} key={e.objectID}>
+                  <Card onClick={()=>{loVi(e)}} name={e.petName} localidad={e.location} img={e.url} nameButon={"Lo vi"}/>
+                  </div>
+            }else{
+                return <h1>No hay mascotas cerca tuyo</h1>
+            }
+             })}
+           </div>
+            }
+          
            </div>
          </>
        
