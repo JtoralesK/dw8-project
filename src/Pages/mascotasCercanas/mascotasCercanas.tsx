@@ -5,6 +5,7 @@ import {reportesCercanos} from "../../hooks/hooks"
 import css from"./mascotasCercanas.css"
 import {Card} from"../../Components/card/card"
 import {giveUbication} from"../../Components/giveUbication/giveUbication"
+import {Loader} from"../../Components/loader/loader"
 function MascotasCercanas(){
     const [results,setResults]= useState([]);
     const {obData,cargando}=reportesCercanos()
@@ -43,12 +44,18 @@ return <>
          </div>
         </aside>
         
-        <article>
-        {cargando?<h1>cargando...</h1>:null}    
+        <article className={css.cargando}>
+        {cargando
+        ?
+        <div className={css.span}>
+        <span><Loader/></span>
+        </div>
+        :
+        null}    
         {location.estado
          ?
          <>
-           <div className={css.mascotas}>
+           <div className={css.mascotas} style={{display:"flex"}}>
            {results.map((e)=>{
             
                 if(e){
