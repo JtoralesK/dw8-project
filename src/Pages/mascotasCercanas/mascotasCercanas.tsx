@@ -8,10 +8,11 @@ function MascotasCercanas(){
     const [results,setResults]= useState([]);
     const {obData,cargando}=reportesCercanos()
     const [location,setLocation]= useRecoilState(ubication)    
-  
+
     useEffect(()=>{
         if(location){
-            obData(location).then((e)=>{                
+            obData(location).then((e)=>{  
+                            
                 setResults(e);
             }) 
         }
@@ -63,8 +64,9 @@ return <>
          <>
            <div className={css.mascotas}>
            {results.map((e)=>{
+            
                 if(e){
-                    return <div key={e.objectID}><Card name={e.petName} localidad={e.location} img={e.url}/></div>
+                    return <div key={e.objectID}><Card name={e.petName} localidad={e.location} img={e.url} nameButon={"Lo vi"}/></div>
                 }else{
                     return <h1>No hay mascotas cerca tuyo</h1>
                 }

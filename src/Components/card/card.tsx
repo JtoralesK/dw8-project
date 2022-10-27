@@ -4,6 +4,7 @@ type Prop ={
     name:String,
     localidad:String,
     img:string
+    nameButon:string
 }
 
  function Card (p:Prop){
@@ -14,7 +15,7 @@ type Prop ={
         <h2 className={css.localidad}>{p.localidad}</h2>
         <div className={css.linLovi}>
         <h4 className={css.name}>{p.name}</h4>
-        <button className={css.button}>Lo vi</button>
+        <button className={css.button}>{p.nameButon}</button>
         </div>
         </div>
         </div>

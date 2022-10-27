@@ -54,7 +54,7 @@ function Header(){
                </ul>
         </div>
                
-        { cargando
+        { true
         ?
         <div className={css.cargando}>
         <div className={css.span}>

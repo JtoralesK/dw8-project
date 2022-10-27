@@ -26,8 +26,8 @@ return <>
     ?
     <>
       {results.map((e)=>{
-                if(e){
-                    return <div key={e.objectID}><Card name={e.petName} localidad={e.location} img={e.url}/></div>
+                if(e){                    
+                    return <div key={e.id}><Card name={e.petName} localidad={e.location} img={e.url} nameButon={"Editar"}/></div>
                 }
             })}
     </>

@@ -1,9 +1,11 @@
   .span{
-    width: 100px;
     height: 500px;
     margin: auto;
     display: flex;
     align-items: center;
+  }
+  @media (max-width: 900px) {
+    
   }
 .loader {
     color: #061d13;
