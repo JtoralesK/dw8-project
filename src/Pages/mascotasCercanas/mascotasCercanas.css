@@ -6,21 +6,22 @@ width: 100%;
 .secciones{
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 .seccionNombres{
     min-width: 300px;
     background-color: blanchedalmond;
     min-height: 100vh;
     align-items: center;
-
+    display: none;
 }
-@media (max-width: 700px) {
+@media (min-width: 900px) {
     .secciones{
         justify-content: center;
-
     }
     .seccionNombres{
-        display: none;
+        display: flex;
+        align-items:flex-start;
     }
   }
 ul li{
@@ -32,22 +33,28 @@ ul li{
     width:80%;
     margin: auto;
 }
+@media (min-width: 900px) {
+    .listado{
+        margin: 0;
+    }
+  }
 .tituloListado{
     text-align: center;
     margin-top: 20px;
 }
 .mascotas{
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     margin-top: 50px;
     justify-content: center;
+    flex-direction: column;
+
 }
-@media (max-width: 700px) {
+@media (min-width: 700px) {
     .mascotas{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        flex-direction: row;
+        margin-top: 0px;
+
     }
   }
 .imgAside{
