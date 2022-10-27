@@ -21,7 +21,8 @@ function MisReportes(){
     
 return <>
    <div className={css.conteiner}>
-    <h1 className={css.titleReporte}>MIS REPORTES</h1>
+   <h1 className={css.titleReporte}>MIS REPORTES</h1>
+   <div className={css.misReportesConteiner}>
     {results
     ?
     <>
@@ -33,6 +34,7 @@ return <>
     </>
     :
     <p>no hay</p>}
+   </div>
    </div>
 </>
 }
