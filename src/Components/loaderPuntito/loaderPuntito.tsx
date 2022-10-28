@@ -2,10 +2,9 @@ import React , { useState,useEffect}from "react"
 import css from "./loaderPuntito.css"
 type Prop={
     state:boolean
-    
 }
 export function LoaderPuntito(p:Prop){
-    const [num,setNum]=useState(1);
+    const [num,setNum]=useState(0);
     useEffect(()=>{
         if(p.state==true){
             let i=0;             

@@ -18,6 +18,7 @@ import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
    const [cargandoUser,setCargando] =useState(false)
    //state this
    const [someForm,setSomeForm]= useState(true);
+   const [datosIncorrectos,setDatosIncorrectos]=useState(false)
  //cambia de form
  const cambiarForm = ()=>{
    setSomeForm(!someForm)
@@ -32,17 +33,27 @@ import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
    //iniciar secion
     const enter =(e)=>{    
       setCargando(true);
+      setDatosIncorrectos(false)
+
       const {email,password} = e
       iniciarUsuario(email,password).then((token)=>{
-         obData(token).then((user)=>{            
-            if(user.id){
-             setCargando(false);
-              serUser({token:token.token,fullname:user.fullname,email:user.email})
-             navigate(valuePage)
-            }    
+         console.log(token);
+         if(token.user==="incorrect dates"){
+            console.log("Datos incorrectos");
             setCargando(false);
- 
-         })
+            setDatosIncorrectos(true)
+         }else{
+            obData(token).then((user)=>{            
+               if(user.id){
+                setCargando(false);
+                 serUser({token:token.token,fullname:user.fullname,email:user.email})
+                navigate(valuePage)
+               }    
+               setCargando(false);
+    
+            })
+         }
+       
             
       })
             
@@ -78,11 +89,11 @@ import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
         <div className={css.cardLog}>
          {someForm
          ?
-          <Enter submit={enter} cambiarForm={cambiarForm} ></Enter>
+          <Enter submit={enter} cambiarForm={cambiarForm} error={datosIncorrectos} ></Enter>
          :
          <NewLogin submit={crea} cambiarForm={cambiarForm}  ></NewLogin>
          }
-        <LoaderPuntito state={cargandoUser}></LoaderPuntito>
+        <LoaderPuntito  state={cargandoUser}></LoaderPuntito>
         </div> 
         </div>
        </div>
