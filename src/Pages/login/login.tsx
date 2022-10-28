@@ -19,6 +19,8 @@ import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
    //state this
    const [someForm,setSomeForm]= useState(true);
    const [datosIncorrectos,setDatosIncorrectos]=useState(false)
+   const [usuarioYaCreado,serUsuarioYaCreado]=useState(false)
+
  //cambia de form
  const cambiarForm = ()=>{
    setSomeForm(!someForm)
@@ -64,10 +66,12 @@ import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
    
     const crea = (e)=>{
       setCargando(true);
+      serUsuarioYaCreado(false)
       const {email,password,fullname} = e
-      crearUsuario(email,password,fullname).then((me)=>{
-            let user = me[0]
-            if(user.id){
+      crearUsuario(email,password,fullname).then((me)=>{         
+            let error = me[1]
+            if(me[0]!=null){
+               let user = me[0]
                iniciarUsuario(email,password).then((token)=>{ 
                console.log({token});
                 setCargando(false);
@@ -75,6 +79,11 @@ import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
                  navigate(valuePage)
                 })
             }    
+            if(error){
+               setCargando(false);
+               console.error(error);
+               serUsuarioYaCreado(true)
+            }
             setCargando(false);
  
          })
@@ -91,7 +100,7 @@ import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
          ?
           <Enter submit={enter} cambiarForm={cambiarForm} error={datosIncorrectos} ></Enter>
          :
-         <NewLogin submit={crea} cambiarForm={cambiarForm}  ></NewLogin>
+         <NewLogin submit={crea} cambiarForm={cambiarForm} error={usuarioYaCreado} ></NewLogin>
          }
         <LoaderPuntito  state={cargandoUser}></LoaderPuntito>
         </div> 

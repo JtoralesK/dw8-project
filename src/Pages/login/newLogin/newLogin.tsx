@@ -5,6 +5,7 @@ import css from"./new.css"
 type Prop = {
     submit?:(any)=>any,
     cambiarForm?:(any)=>any
+    error?:boolean
 }
  function NewLogin(p:Prop){  
    
@@ -28,6 +29,7 @@ type Prop = {
         <input name="email" className={css.input} type="text" placeholder="Email"/>
         <input name="password" className={css.input} type="password" placeholder="password" />
         <MyButton name="Crear Cuenta"></MyButton>
+        <p className={css.errorFaltanDatos} style={p.error?{display:"initial"}:{display:"none"}}>Este usuario ya existe</p>
        <div className={css.linea}></div>
        </form>
        <MyButton click={click} name="Iniciar Secion"></MyButton>
