@@ -3,6 +3,8 @@ import { useRecoilState} from"recoil"
 import {ubication} from"../../hooks/atoms"
 import {Map, Marker } from 'mapbox-gl';
 import {giveUbication}from"../giveUbication/giveUbication"
+import css from "mapbox-gl/dist/mapbox-gl.css";
+console.log(css);
 
    const MAPBOX_TOKEN = "pk.eyJ1IjoiamF2aXRvcmFsZXNrIiwiYSI6ImNreTR0ZXg1eDBmN3EybnE5ZmVyc2d2OWQifQ.2CklQ60c6qrllj5ryyJBKg"
    const divStyle = {
@@ -101,7 +103,7 @@ import {giveUbication}from"../giveUbication/giveUbication"
             Longitude:{lng}|Latitude:{lat} 
             </div>
             </div>
-            <div>
+            <div style={{"display":"block","textAlign":"center"}} >
             <button  type="button" onClick={miUbicacionActual} >Ir a mi ubicaion aproximada</button>
             </div>
          </div>
