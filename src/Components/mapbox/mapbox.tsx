@@ -20,12 +20,12 @@ import {Map, Marker} from 'mapbox-gl';
       },[])
 
       useEffect(()=>{         
-            mapa?.flyTo({
+           /* mapa?.flyTo({
                center
             })            
             if(mapa){
                new Marker().setLngLat([-58.7946148, -34.5055951]).addTo(mapa)
-            }
+            }*/
       },[center])
       
          useEffect(()=>{
