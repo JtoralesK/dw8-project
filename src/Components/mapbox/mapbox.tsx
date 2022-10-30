@@ -2,12 +2,19 @@ import React , { useState ,useEffect,useRef}from "react"
 import { useRecoilState} from"recoil"
 import {ubication} from"../../hooks/atoms"
 import {Map, Marker } from 'mapbox-gl';
-import css from"./mapbox.css"
 import {giveUbication}from"../giveUbication/giveUbication"
+
    const MAPBOX_TOKEN = "pk.eyJ1IjoiamF2aXRvcmFsZXNrIiwiYSI6ImNreTR0ZXg1eDBmN3EybnE5ZmVyc2d2OWQifQ.2CklQ60c6qrllj5ryyJBKg"
-   type LyN=[number,number]
-
-
+   const divStyle = {
+      backgroundColor: '40px',
+      color: ' #fff',
+      padding: '6px 12px',
+      fontfamily: 'monospace',
+      zindex: 1,
+      position: 'absolute',
+      margin: '12px',
+      borderRadius:' 4px',
+    };
     export function Mapa(){
       const divMapaRef = useRef<HTMLDivElement>(null);
       const [mapa,setMapa]=useState<Map>();
@@ -79,12 +86,22 @@ import {giveUbication}from"../giveUbication/giveUbication"
        
       return (
          <div>
-            <div className={css.mapa}  ref={divMapaRef}>
-            <div className={css.sidebar}>
+            <div  ref={divMapaRef}>
+            <div style={{
+      backgroundColor: '40px',
+      color: ' #ffeb3b',
+      padding: '6px 12px',
+      fontFamily: 'monospace',
+      zIndex: 1,
+      position: 'absolute',
+      margin: '12px',
+      borderRadius:' 4px',
+      background:"#7833334f"
+    }}>
             Longitude:{lng}|Latitude:{lat} 
             </div>
             </div>
-            <div className={css.mapaButton}>
+            <div>
             <button  type="button" onClick={miUbicacionActual} >Ir a mi ubicaion aproximada</button>
             </div>
          </div>
