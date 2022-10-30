@@ -4,15 +4,23 @@ import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 type Prop ={
     name:String,
     img:string,
-    onClick?:()=>any
+    onClick?:()=>any,
+    onSubmit?:(any)=>any
+    estadoLoader:boolean
 }
 
  function SeccionViMascota (p:Prop){
-   console.log({p});
    const onClick =()=>{    
         if(p.onClick){
             p.onClick()
         }
+   }
+   const enviarForm = (e)=>{
+    e.preventDefault();
+    const {name,bio,cellphone}= e.target;
+    if(p.onSubmit){
+        p.onSubmit({name:name.value,bio:bio.value,cellphone:cellphone.value})
+    }
    }
     return <>
      <div className={css.conteinerViMascota}>
@@ -20,21 +28,22 @@ type Prop ={
         <div><img className={css.mascotaVista} src={p.img} alt="" /></div>
        <div>
        <h1 className={css.titleSeccionMascota}>¿Viste a {p.name}?</h1>
-       <form className={css.formSeccionMascota}>
+       <form onSubmit={enviarForm} className={css.formSeccionMascota}>
             <label>
                 <p className={css.pSeccionMascota}>Tu nombre</p>
-                <input className={css.inputSeccionMascota} type="text" name="" id="" placeholder="Julian" />
+                <input className={css.inputSeccionMascota} type="text" name="name"  placeholder="Julian" />
             </label>
             <label>
                 <p className={css.pSeccionMascota}>Tu numero</p>
-                <input className={css.inputSeccionMascota} type="text" name="" id="" placeholder="54 9 112343625" />
+                <input className={css.inputSeccionMascota} type="text" name="cellphone"  placeholder="54 9 112343625" />
             </label>
             <label>
                 <p className={css.pSeccionMascota}>¿Donde viste a {p.name}?</p>
-                <textarea className={css.inputSeccionMascota} name="" id="" cols={5} rows={5}></textarea>
+                <textarea className={css.inputSeccionMascota} name="bio"  cols={5} rows={5}></textarea>
             </label>
             <div className={css.divButton}>
             <button className={css.buttonFormSeccionMascota}>Reportar información</button>
+            <span style={p.estadoLoader?{"display":"block"}:{"display":"none"}} className={css.loaderCircular}></span>
             </div>
         </form>
         <div className={css.divButtonRight}>

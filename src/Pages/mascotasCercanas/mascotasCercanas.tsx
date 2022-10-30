@@ -1,23 +1,31 @@
 import React, { useEffect, useState } from "react";
 import {ubication} from "../../hooks/atoms"
 import {useRecoilState} from"recoil"
-import {reportesCercanos} from "../../hooks/hooks"
+import {reportesCercanos,EnviarEmail} from "../../hooks/hooks"
 import css from"./mascotasCercanas.css"
 import {Card} from"../../Components/card/card"
 import {giveUbication} from"../../Components/giveUbication/giveUbication"
 import {Loader} from"../../Components/loader/loader"
 import {SeccionViMascota} from"../../Components/seccionViMascota/seccionViMascota"
+
+
 type CardType ={
   name?:String,
   img?:string
+  userEmail?:string
 }
 function MascotasCercanas(){
+    //mascotas cercanas
     const [results,setResults]= useState([]);
+    //conexion api
     const {obData,cargando}=reportesCercanos()
+    const {enviarReporte,cargandoEmail}=EnviarEmail();
+    //atom ubication
     const [location,setLocation]= useRecoilState(ubication)    
+    //estado de seleccion de la card
     const [cardSeleccionada,setCardSeleccionada]= useState(false);
+    ///data de la card seleccionada
     const [cardData,setCardData]=useState<CardType>({})
-    console.log(cardData);
     
     useEffect(()=>{
         if(location){
@@ -35,8 +43,14 @@ function MascotasCercanas(){
       setCardSeleccionada(!cardSeleccionada);
       console.log(e);
       if(e){
-        setCardData({name:e.petName,img:e.url})
+        setCardData({name:e.petName,img:e.url,userEmail:e.userEmail})
       }
+  }
+  const enviarEmail = (e)=>{
+    enviarReporte(e.bio,e.name,e.cellphone,cardData.userEmail).then((e)=>{
+      console.log(e);
+    })
+    
   }
 
 return <>
@@ -70,13 +84,13 @@ return <>
            <div className={css.cardMascotavista}  >
             {cardSeleccionada
             ?
-            <SeccionViMascota name={cardData.name} img={cardData.img} onClick={()=>{loVi()}} />
+            <SeccionViMascota name={cardData.name} img={cardData.img} onClick={()=>{loVi()}} onSubmit={enviarEmail} estadoLoader={cargandoEmail} />
             :
            <div className={css.mascotasCercanas}>
              {results.map((e)=>{
             
             if(e){
-                return <div style={cardSeleccionada?{display:"none"}:{display:"initial"}} key={e.objectID}>
+                return <div style={cardSeleccionada?{display:"none"}:{display:"block"}} key={e.objectID}>
                   <Card onClick={()=>{loVi(e)}} name={e.petName} localidad={e.location} img={e.url} nameButon={"Lo vi"}/>
                   </div>
             }else{
