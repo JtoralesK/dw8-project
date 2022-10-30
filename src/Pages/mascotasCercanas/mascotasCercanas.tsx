@@ -22,6 +22,8 @@ function MascotasCercanas(){
     const {enviarReporte,cargandoEmail}=EnviarEmail();
     //atom ubication
     const [location,setLocation]= useRecoilState(ubication)    
+    console.log(location);
+    
     //estado de seleccion de la card
     const [cardSeleccionada,setCardSeleccionada]= useState(false);
     ///data de la card seleccionada

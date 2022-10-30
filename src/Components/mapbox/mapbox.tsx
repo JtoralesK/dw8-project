@@ -2,6 +2,8 @@ import React , { useState ,useEffect,useRef}from "react"
 import { useRecoilState} from"recoil"
 import {ubication} from"../../hooks/atoms"
 import {Map, Marker} from 'mapbox-gl';
+import css from"./mapbox.css"
+import {giveUbication}from"../giveUbication/giveUbication"
    const MAPBOX_TOKEN = "pk.eyJ1IjoiamF2aXRvcmFsZXNrIiwiYSI6ImNreTR0ZXg1eDBmN3EybnE5ZmVyc2d2OWQifQ.2CklQ60c6qrllj5ryyJBKg"
    type LyN=[number,number]
 
@@ -10,23 +12,17 @@ import {Map, Marker} from 'mapbox-gl';
       const divMapaRef = useRef<HTMLDivElement>(null);
       const [mapa,setMapa]=useState<Map>();
       const [location,setLocation]= useRecoilState(ubication)   
-      const [center,setCenter]=useState<LyN>()
-      useEffect(()=>{
-        console.log(location);
-        if(location.lng!=null){
-         console.log("hay location");
-         setCenter([location.lng,location.lat])
-      }
-      },[])
-
+      const [lng,setLng]= useState<any>(-50)
+      const [lat,setLat]= useState<any>(-30)
+      const [zoom, setZoom] = useState<any>(5);
+      console.log({lng,lat,zoom});
+      
       useEffect(()=>{         
-           /* mapa?.flyTo({
-               center
-            })            
-            if(mapa){
-               new Marker().setLngLat([-58.7946148, -34.5055951]).addTo(mapa)
-            }*/
-      },[center])
+         mapa?.flyTo({
+            center: [lng, lat],
+      })
+      
+      },[lng,lat])
       
          useEffect(()=>{
            if(divMapaRef.current){
@@ -34,16 +30,35 @@ import {Map, Marker} from 'mapbox-gl';
             new Map({  
             container:divMapaRef.current,
             style:"mapbox://styles/mapbox/streets-v11",
-            center:center,
-            zoom:15,
-            accessToken:MAPBOX_TOKEN
+            center:[lng, lat],
+            zoom:zoom,
+            accessToken:MAPBOX_TOKEN,
+            attributionControl: false
         }) )
            }
          },[divMapaRef])
          
+
+            const miUbicacionActual = ()=>{
+               if(location.lng && location.lat && mapa){
+                  setLng(location.lng)
+                  setLat(location.lat)
+                  setZoom(15)
+            
+               }else{
+                  giveUbication(setLocation)
+               }
+         }
       return (
          <div>
-            <div  ref={divMapaRef}></div>
+            <div className={css.mapa}  ref={divMapaRef}>
+            <div className={css.sidebar}>
+            Longitude:{lng}|Latitude:{lat} 
+            </div>
+            </div>
+            <div className={css.mapaButton}>
+            <button  type="button" onClick={miUbicacionActual} >Ir a mi ubicaion aproximada</button>
+            </div>
          </div>
        );
     }

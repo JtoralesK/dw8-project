@@ -23,7 +23,6 @@ import {MyDropzone} from "../../Components/imgDropzone/imgDropzone"
                 <MyDropzone value={image} onChange={setImage}></MyDropzone>
                 </label>
                 <Mapa></Mapa>
-                 <button >Ir a mi ubicaion aproximada</button>
                  <label className={css.labelLocalidad}>
                  <h2>Indica ciudad y localidad*</h2>
                  <input className={css.inputReport} type="text"  name="name" required  placeholder="Buenos Aires,Palermo"/>
@@ -33,8 +32,8 @@ import {MyDropzone} from "../../Components/imgDropzone/imgDropzone"
                  <textarea className={css.inputReport} rows={4}  name="" placeholder="Gato blanco con manchitas grises. Tiene un año y es macho . Super amigable . Se le hace como un casquito en la cabeza con sus colores grises y blancos.." ></textarea>
                  </label>
                  <button>Reportar como pérdido</button>
-                 <button>Cancelar</button>
                 </form>
+                <button>Cancelar</button>
             </div>
         </div>
      </>

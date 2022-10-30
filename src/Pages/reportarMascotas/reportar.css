@@ -8,19 +8,18 @@
     flex-direction: row;
     justify-content: space-evenly;
     padding: 1.5rem;
-
+    
 }
 @media (max-width: 600px) {
     .reportConteiner{
         flex-direction: column;
-     
-    
     }
 }
 .form{
     display: flex;
     flex-direction: column;
-    gap: 30px
+    gap: 30px;
+    margin-bottom: 30px;
 }
 .ingresarImg{
     display: flex;
@@ -37,3 +36,4 @@
 .labelName{
     margin-top: 20px;
 }
+
