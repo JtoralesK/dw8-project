@@ -207,3 +207,33 @@ export  function creaReporte(){
     creaReport,
   }
 }
+export  function EnviarEmail(){
+  const [cargandoEmail,setCargandoEmail] =useState(false)
+  async function enviarReporte(img:string,bio:string,name:string,cellphone:number){
+    setCargandoEmail(true)    
+    if(img && bio && name && cellphone ){
+      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/email",{
+        method:"POST",
+        headers:{
+          'Content-Type': 'application/json'
+        },
+         body:JSON.stringify({img})})
+          const info= json.json()
+          try{
+            setCargandoEmail(false)                    
+            return info
+          }catch(error){
+            setCargandoEmail(false)            
+            return error
+          }
+    }else{
+      console.error("falta data")
+      setCargandoEmail(false)    
+      return []
+    }
+  }
+  return{
+    cargandoEmail,
+    enviarReporte,
+  }
+}

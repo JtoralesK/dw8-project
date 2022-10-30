@@ -46,7 +46,7 @@ function Header(){
                })}
                </ul>
         </div>
-        <div className={css.menuMovile} style={styleButton?{display: 'block'}:{display: 'none'}}>
+        <div className={css.menuMovile} style={styleButton?{marginLeft:"0"}:{marginLeft:"-100%"}}>
             <ul className={css.menuM} >
                {pages.map((e)=>{
                 return <li onClick={()=>{setLog(e.page);setStyleButton(false)}} key={e.name}>{e.name}</li>

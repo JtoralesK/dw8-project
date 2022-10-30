@@ -34,7 +34,7 @@ type Prop ={
                 <textarea className={css.inputSeccionMascota} name="" id="" cols={5} rows={5}></textarea>
             </label>
             <div className={css.divButton}>
-            <button className={css.buttonFormSeccionMascota}>Enviar</button>
+            <button className={css.buttonFormSeccionMascota}>Reportar información</button>
             </div>
         </form>
         <div className={css.divButtonRight}>
