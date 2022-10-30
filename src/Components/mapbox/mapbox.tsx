@@ -1,7 +1,7 @@
 import React , { useState ,useEffect,useRef}from "react"
 import { useRecoilState} from"recoil"
 import {ubication} from"../../hooks/atoms"
-import {Map, Marker} from 'mapbox-gl';
+import {Map, Marker } from 'mapbox-gl';
 import css from"./mapbox.css"
 import {giveUbication}from"../giveUbication/giveUbication"
    const MAPBOX_TOKEN = "pk.eyJ1IjoiamF2aXRvcmFsZXNrIiwiYSI6ImNreTR0ZXg1eDBmN3EybnE5ZmVyc2d2OWQifQ.2CklQ60c6qrllj5ryyJBKg"
@@ -12,43 +12,71 @@ import {giveUbication}from"../giveUbication/giveUbication"
       const divMapaRef = useRef<HTMLDivElement>(null);
       const [mapa,setMapa]=useState<Map>();
       const [location,setLocation]= useRecoilState(ubication)   
-      const [lng,setLng]= useState<any>(-50)
-      const [lat,setLat]= useState<any>(-30)
+      const [lng,setLng]= useState<any>(-51.241)
+      const [lat,setLat]= useState<any>(-30.4235)
       const [zoom, setZoom] = useState<any>(5);
-      console.log({lng,lat,zoom});
+      const [miUbicaionActiva,setMiUbicacionActivada]=useState(false)
       
       useEffect(()=>{         
-         mapa?.flyTo({
-            center: [lng, lat],
-      })
+        if(mapa && miUbicaionActiva==true){
+         
+         mapa.flyTo({
+            center: [lng,lat],
+            essential: true,// this animation is considered essential with respect to prefers-reduced-motion,
+            zoom:zoom
+            });
+         new Marker({
+            color:"red",
+            rotationAlignment: 'map'
+         }).setLngLat([lng,lat])
+            .addTo(mapa)
+            
+            
+            setMiUbicacionActivada(false)
+        }
       
-      },[lng,lat])
-      
+      },[miUbicaionActiva])
+
+      useEffect(() => {
+         if (mapa){
+            mapa.on('move', () => {
+               setLng(mapa.getCenter().lng.toFixed(4));
+               setLat(mapa.getCenter().lat.toFixed(4));
+               setZoom(mapa.getZoom().toFixed(2));
+               });
+
+         }
+       
+         });
+
          useEffect(()=>{
            if(divMapaRef.current){
            setMapa( 
             new Map({  
             container:divMapaRef.current,
-            style:"mapbox://styles/mapbox/streets-v11",
+            style:"mapbox://styles/mapbox/dark-v10",
             center:[lng, lat],
             zoom:zoom,
             accessToken:MAPBOX_TOKEN,
-            attributionControl: false
+            attributionControl: false,
         }) )
            }
+           
          },[divMapaRef])
          
 
             const miUbicacionActual = ()=>{
                if(location.lng && location.lat && mapa){
-                  setLng(location.lng)
-                  setLat(location.lat)
-                  setZoom(15)
-            
+                  setLng(location.lng);
+                  setLat(location.lat);
+                  setZoom(12);
+                  setMiUbicacionActivada(true)
                }else{
                   giveUbication(setLocation)
                }
          }
+      
+       
       return (
          <div>
             <div className={css.mapa}  ref={divMapaRef}>
