@@ -4,18 +4,18 @@ import {ubication} from"../../hooks/atoms"
 import {Map, Marker } from 'mapbox-gl';
 import {giveUbication}from"../giveUbication/giveUbication"
 import css from "mapbox-gl/dist/mapbox-gl.css";
-console.log(css);
 
    const MAPBOX_TOKEN = "pk.eyJ1IjoiamF2aXRvcmFsZXNrIiwiYSI6ImNreTR0ZXg1eDBmN3EybnE5ZmVyc2d2OWQifQ.2CklQ60c6qrllj5ryyJBKg"
-   const divStyle = {
+   const divStyle:any = {
       backgroundColor: '40px',
-      color: ' #fff',
+      color: ' #ffeb3b',
       padding: '6px 12px',
-      fontfamily: 'monospace',
-      zindex: 1,
+      fontFamily: 'monospace',
+      zIndex: 1,
       position: 'absolute',
       margin: '12px',
       borderRadius:' 4px',
+      background:"#7833334f"
     };
     export function Mapa(){
       const divMapaRef = useRef<HTMLDivElement>(null);
@@ -85,26 +85,17 @@ console.log(css);
                }
          }
       
+       console.log(window.innerWidth);
        
       return (
          <div>
-            <div  ref={divMapaRef}>
-            <div style={{
-      backgroundColor: '40px',
-      color: ' #ffeb3b',
-      padding: '6px 12px',
-      fontFamily: 'monospace',
-      zIndex: 1,
-      position: 'absolute',
-      margin: '12px',
-      borderRadius:' 4px',
-      background:"#7833334f"
-    }}>
+            <div  ref={divMapaRef} style={{height:"250px"}}>
+            <div style={divStyle}>
             Longitude:{lng}|Latitude:{lat} 
             </div>
+            <div style={{...divStyle,bottom:0,right:0}}>
+            <button type="button" onClick={miUbicacionActual} style={{"background":"none","border":"none",color:'#ffeb3b'}}>Mi ubicacion</button>
             </div>
-            <div style={{"display":"block","textAlign":"center"}} >
-            <button  type="button" onClick={miUbicacionActual} >Ir a mi ubicaion aproximada</button>
             </div>
          </div>
        );

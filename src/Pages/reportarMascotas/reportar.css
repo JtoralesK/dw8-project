@@ -5,14 +5,19 @@
 
 .reportConteiner{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
     padding: 1.5rem;
-    
+    font-family: 'Poppins', sans-serif;
 }
-@media (max-width: 600px) {
+
+@media (min-width: 900px) {
+    .conteiner{
+        display: flex;
+        justify-content: center;
+    }
     .reportConteiner{
-        flex-direction: column;
+        justify-content: center;
     }
 }
 .form{
@@ -20,6 +25,15 @@
     flex-direction: column;
     gap: 30px;
     margin-bottom: 30px;
+
+}
+@media (min-width: 900px) {
+    .form{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 30px;
+        align-items: center;
+    }
 }
 .ingresarImg{
     display: flex;
@@ -36,4 +50,19 @@
 .labelName{
     margin-top: 20px;
 }
+@media (min-width: 900px) {
+    .buttonsReportar{
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        gap: 10px;
+    }
+    .divZonaUbicacion{
+        width: 35rem;
+    }
+    .divZonaDescription,.divZonaUbicacion{
+        height: 70vh;
+    }
+}
+
 
