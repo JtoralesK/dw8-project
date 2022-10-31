@@ -15,7 +15,7 @@ import {FormReportMascota} from "../../Components/formEditarMascota/formEditarMa
            <div className={css.conteiner}>
            <div className={css.reportConteiner}>
                 <h1 >Mi mascota perdida</h1>
-                <FormReportMascota image={image} setImage={setImage}></FormReportMascota>
+                <FormReportMascota url={image} setImage={setImage}></FormReportMascota>
             </div>
            </div>
         </div>

@@ -17,7 +17,12 @@ import css from "mapbox-gl/dist/mapbox-gl.css";
       borderRadius:' 4px',
       background:"#7833334f"
     };
-    export function Mapa(){
+    type valoresMyPetEdit = {
+      lng?:number,
+      lat?:number
+    }
+    export function Mapa(valores:valoresMyPetEdit){
+      
       const divMapaRef = useRef<HTMLDivElement>(null);
       const [mapa,setMapa]=useState<Map>();
       const [location,setLocation]= useRecoilState(ubication)   
@@ -25,40 +30,61 @@ import css from "mapbox-gl/dist/mapbox-gl.css";
       const [lat,setLat]= useState<any>(-30.4235)
       const [zoom, setZoom] = useState<any>(5);
       const [miUbicaionActiva,setMiUbicacionActivada]=useState(false)
-      
-      useEffect(()=>{         
-        if(mapa && miUbicaionActiva==true){
-         
+
+      //si esta en modo editar, pone la ubicacion que ya se encuentra en la mascota
+      useEffect(()=>{
+        if(valores.lat && valores.lng){
          mapa.flyTo({
-            center: [lng,lat],
-            essential: true,// this animation is considered essential with respect to prefers-reduced-motion,
-            zoom:zoom
+            center: [valores.lng,valores.lat],
+            essential: true,
+            zoom:15
             });
          new Marker({
             color:"red",
-            rotationAlignment: 'map'
-         }).setLngLat([lng,lat])
+            rotationAlignment: 'map'})
+            .setLngLat([valores.lng,valores.lat])
             .addTo(mapa)
-            
-            
-            setMiUbicacionActivada(false)
+        }
+      
+      },[valores])
+      ///va hacia el sitio que se toco en el boton y pone un marcador
+      useEffect(()=>{  
+        if(mapa && miUbicaionActiva==true){    
+            mapa.flyTo({
+               center: [lng,lat],
+               essential: true,
+               zoom:zoom
+               });
+            new Marker({
+               color:"red",
+               rotationAlignment: 'map'})
+               .setLngLat([lng,lat])
+               .addTo(mapa)
+               setMiUbicacionActivada(false)
         }
       
       },[miUbicaionActiva])
-
+         //mueve el mapa
       useEffect(() => {
          if (mapa){
             mapa.on('move', () => {
                setLng(mapa.getCenter().lng.toFixed(4));
                setLat(mapa.getCenter().lat.toFixed(4));
                setZoom(mapa.getZoom().toFixed(2));
-               });
-
-         }
-       
-         });
-
-         useEffect(()=>{
+               });}});
+        //Activa boton mi ubicaion
+           const miUbicacionActual = ()=>{
+            if(location.lng && location.lat && mapa){
+               setLng(location.lng);
+               setLat(location.lat);
+               setZoom(12);
+               setMiUbicacionActivada(true)
+            }else{
+               giveUbication(setLocation)
+            }
+      }
+      //setea el mapa
+         useEffect(()=>{   
            if(divMapaRef.current){
            setMapa( 
             new Map({  
@@ -72,24 +98,10 @@ import css from "mapbox-gl/dist/mapbox-gl.css";
            }
            
          },[divMapaRef])
-         
-
-            const miUbicacionActual = ()=>{
-               if(location.lng && location.lat && mapa){
-                  setLng(location.lng);
-                  setLat(location.lat);
-                  setZoom(12);
-                  setMiUbicacionActivada(true)
-               }else{
-                  giveUbication(setLocation)
-               }
-         }
-      
-       console.log(window.innerWidth);
-       
+           
       return (
          <div>
-            <div  ref={divMapaRef} style={{height:"250px"}}>
+            <div  ref={divMapaRef} style={window.innerWidth>600?{height:"250px"}:{height:"200px"}}>
             <div style={divStyle}>
             Longitude:{lng}|Latitude:{lat} 
             </div>

@@ -6,10 +6,18 @@ import {Mapa} from"../../Components/mapbox/mapbox"
 import {MyDropzone} from "../../Components/imgDropzone/imgDropzone"
 
 type Prop={
-    image:String,
-    setImage: React.Dispatch<React.SetStateAction<string>>
+   petName?:string,
+   url?:string,
+   lat?:number,
+   lng?:number,
+   location?:string,
+   id?:number,
+   action:number
+    setImage?: React.Dispatch<React.SetStateAction<string>>
 }
  function FormReportMascota(p:Prop){  
+   console.log(p);
+   
     return (
      <>
         <div className={css.body}>
@@ -20,27 +28,26 @@ type Prop={
                <div  className={css.divZonaDescription}>
                <label className={css.labelName}>
                 <h2>Nombre de la mascota*</h2>
-                <input className={css.inputReport} type="text"  name="name" required  placeholder="michi"/>
-                </label>
-                <label className={css.labelLocalidad}>
-                <h2>Descripcion*</h2>
-                <textarea className={css.inputReport} rows={4}  name="" placeholder="Gato blanco con manchitas grises. Tiene un año y es macho . Super amigable . Se le hace como un casquito en la cabeza con sus colores grises y blancos.." ></textarea>
+                <input className={css.inputReport} type="text"  name="name" required  placeholder={p.petName?p.petName:"michi"}/>
                 </label>
                <label>
                <h2>Foto de la mascota*</h2>
-               <MyDropzone value={p.image} onChange={p.setImage}></MyDropzone>
+               <MyDropzone value={p.url} onChange={p.setImage}></MyDropzone>
                </label>
                </div>
 
                <div className={css.divZonaUbicacion}>
-                <Mapa></Mapa>
+                <Mapa lng={p.lng?p.lng:null} lat={p.lat?p.lat:null}></Mapa>
                 <label className={css.labelLocalidad}>
                 <h2>Indica ciudad y localidad*</h2>
-                <input className={css.inputReport} type="text"  name="name" required  placeholder="Buenos Aires,Palermo"/>
+                <input className={css.inputReport} type="text"  name="name" required  placeholder={p.location?p.location:"Buenos Aires, Retiro"}/>
                 </label>
                 <div className={css.buttonsReportar}>
-                <button>Reportar como pérdido</button>
-                <button>Cancelar</button>
+                  <div className={css.buttonesFormReporte}>
+                    <button>{p.action>0?"Editar Reporte":"Reportar mascota"}</button>
+                    <button style={p.action>0?{display:"initial"}:{display:"none"}}>Eliminar Reporte</button>
+                    <button>Cancelar</button>
+                  </div>
                 </div>
                </div>
 

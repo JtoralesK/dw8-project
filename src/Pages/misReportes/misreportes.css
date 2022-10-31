@@ -1,5 +1,5 @@
 .conteiner{
-    height: 89vh;
+    min-height: 100vh;
 }
 .titleReporte{
     text-align: center;
@@ -14,5 +14,22 @@
 @media (min-width:900px) {
     .misReportesConteiner{
         flex-direction: row;
+    }
+}
+.reportEdit{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+@media (min-width: 900px) {
+    .conteinerEdit{
+        display: flex;
+        justify-content: center;
+    }
+    .reportEdit{
+        justify-content: center;
     }
 }

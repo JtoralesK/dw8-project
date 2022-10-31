@@ -20,49 +20,8 @@
         justify-content: center;
     }
 }
-.form{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-bottom: 30px;
 
-}
-@media (min-width: 900px) {
-    .form{
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 30px;
-        align-items: center;
-    }
-}
-.ingresarImg{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
-}
-.inputReport{
-    width: 100%;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 10px;
-}
-.labelName{
-    margin-top: 20px;
-}
-@media (min-width: 900px) {
-    .buttonsReportar{
-        display: flex;
-        flex-direction: column;
-        margin: auto;
-        gap: 10px;
-    }
-    .divZonaUbicacion{
-        width: 35rem;
-    }
-    .divZonaDescription,.divZonaUbicacion{
-        height: 70vh;
-    }
-}
+
 
 
