@@ -183,7 +183,7 @@ export  function creaReporte(){
     const {petName,location} = data
     const lng = data.latYlng[0]
     const lat =data.latYlng[1]
-    const url = data.url[0]
+    const url = data.url
 
   console.table( {petName,location,lat,lng,url});
       
@@ -212,6 +212,46 @@ export  function creaReporte(){
   return{
     cargandoReporte,
     creaReport,
+  }
+}
+export  function actualizarReporte(){
+  const [cargandoReporte,serReporte] =useState(false)
+  async function actualizarRe(data,token:string,id:number){
+    serReporte(true)    
+    const {petName,location} = data
+    const lng = data.latYlng[0]
+    const lat =data.latYlng[1]
+    const url = data.url
+
+  console.table( {petName,location,lat,lng,url});
+      
+    if(petName || location || (lat && lng) || url){
+      console.log("entro al hook");
+      
+      const json = await fetch(`https://apx-desafio-mod7.herokuapp.com/reportes/${id}`,{
+        method:"PUT",
+        headers:{
+          'Authorization':`bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+         body:JSON.stringify({petName,location,lat,lng,url})})
+          const info= json.json()
+          try{
+            serReporte(false)                    
+            return info
+          }catch(error){
+            serReporte(false)            
+            return error
+          }
+    }else{
+      console.error("falta data")
+      serReporte(false)    
+      return []
+    }
+  }
+  return{
+    cargandoReporte,
+    actualizarRe,
   }
 }
 export  function EnviarEmail(){

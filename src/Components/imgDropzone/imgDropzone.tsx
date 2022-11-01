@@ -9,13 +9,14 @@ import { useRecoilState} from"recoil"
 
 export function MyDropzone({value,onChange}) {
     const [cargandoImg,setCargandoImg]=useState(false);
+    console.log(value);
     
   const onDrop = useCallback(acceptedFiles => {
     setCargandoImg(true);
-    acceptedFiles.forEach(file => {
+    acceptedFiles.map(file => {
         const reader = new FileReader()
         reader.onload = ()=>{
-        onChange(pre=>[...pre,reader.result])
+        onChange(reader.result)
         setCargandoImg(false);
        }
          reader.readAsDataURL(file)

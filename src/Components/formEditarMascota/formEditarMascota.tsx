@@ -34,7 +34,7 @@ type Prop={
    const enviarForm = (e)=>{
       e.preventDefault();
       const {name,location}= e.target     
-      if(p.action==0){
+      if(p.action<1){
          if(url){
             if(latYlng[0]!=null || latYlng[1]!=null){
                if(p.onSubmit){               
@@ -50,7 +50,9 @@ type Prop={
             setNameError("Falta Imagen")
             setError(true)
          }
-      } 
+      }else{
+         p.onSubmit({latYlng,url,petName:name.value,location:location.value}) 
+      }
       
    }
     return (
@@ -59,7 +61,7 @@ type Prop={
                <div  className={css.divZonaDescription}>
                <label className={css.labelName}>
                 <h2>Nombre de la mascota*</h2>
-                <input className={css.inputReport} type="text"  name="name" required  placeholder={p.petName?p.petName:"michi"}/>
+                <input className={css.inputReport} type="text"  name="name" required={p.action>0?false:true}  placeholder={p.petName?p.petName:"michi"}/>
                 </label>
                <label>
                <h2>Foto de la mascota*</h2>
@@ -70,7 +72,7 @@ type Prop={
                 <Mapa lng={p.lng?p.lng:null} lat={p.lat?p.lat:null} setLocation={(a)=>{setLocation(a)}}></Mapa>
                 <label className={css.labelLocalidad}>
                 <h2>Indica ciudad y localidad*</h2>
-                <input className={css.inputReport} type="text"  name="location" required  placeholder={p.location?p.location:"Buenos Aires, Retiro"}/>
+                <input className={css.inputReport} type="text"  name="location" required={p.action>0?false:true}  placeholder={p.location?p.location:"Buenos Aires, Retiro"}/>
                 </label>
                 <div className={css.buttonsReportar}>
                   <div className={css.buttonesFormReporte}>
