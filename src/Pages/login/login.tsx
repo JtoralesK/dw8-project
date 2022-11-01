@@ -7,7 +7,7 @@ import {MyButton} from"../../Components/ui/button/button"
 import {NewLogin} from"./newLogin/newLogin"
 import {useNavigate } from"react-router-dom"
 import {iniciarUsuario,obtieneUser,crearUsuario} from"../../hooks/hooks"
-import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
+import {LoaderPuntito} from"../../Components/loaders/loaderBarra/loaderPuntito"
 
  function Login(){  
    //atoms

@@ -177,33 +177,40 @@ export  function actualizarPassword(){
   }
 }
 export  function creaReporte(){
-  const [cargandoImg,setCargandoImg] =useState(false)
-  async function creaReport(img:string,token:string){
-    setCargandoImg(true)    
-    if(img){
+  const [cargandoReporte,serReporte] =useState(false)
+  async function creaReport(data,token:string){
+    serReporte(true)    
+    const {petName,location} = data
+    const lng = data.latYlng[0]
+    const lat =data.latYlng[1]
+    const url = data.url[0]
+
+  console.table( {petName,location,lat,lng,url});
+      
+    if(petName && location && lat && lng && url){
       const json = await fetch("https://apx-desafio-mod7.herokuapp.com/profile",{
         method:"POST",
         headers:{
           'Authorization':`bearer ${token}`,
           'Content-Type': 'application/json'
         },
-         body:JSON.stringify({img})})
+         body:JSON.stringify({petName,location,lat,lng,url})})
           const info= json.json()
           try{
-            setCargandoImg(false)                    
+            serReporte(false)                    
             return info
           }catch(error){
-            setCargandoImg(false)            
+            serReporte(false)            
             return error
           }
     }else{
       console.error("falta data")
-      setCargandoImg(false)    
+      serReporte(false)    
       return []
     }
   }
   return{
-    cargandoImg,
+    cargandoReporte,
     creaReport,
   }
 }

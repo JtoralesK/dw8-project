@@ -52,11 +52,9 @@ return <>
     <p>no hay</p>}
    </div>
    </div>
-   <div style={editarMiMascota?{"display":"initial"}:{"display":"none"}} className={css.conteinerEdit}>
-           <div className={css.reportEdit}>
+   <div style={editarMiMascota?{"display":"block"}:{"display":"none"}} className={css.conteinerEdit}>
                 <h1 style={{"textAlign":"center"}}>Editar mi mascota perdida</h1>
-                <FormReportMascota action={1} petName={petAEditar.petName} url={petAEditar.url} lat={petAEditar.lat} lng={petAEditar.lng} location={petAEditar.location} ></FormReportMascota>
-            </div>
+                <FormReportMascota action={1} petName={petAEditar.petName} url={petAEditar.url} lat={petAEditar.lat} lng={petAEditar.lng} location={petAEditar.location} setEstado={()=>{setEditarMiMascota(false)}} ></FormReportMascota>
     </div>   
    </div>
 </>

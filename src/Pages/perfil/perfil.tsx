@@ -5,7 +5,7 @@ import { useRecoilState} from"recoil"
 import {MyButton} from"../../Components/ui/button/button"
 import css from"./perfil.css"
 import {actualizarPerfil,obtieneUser,actualizarPassword}from"../../hooks/hooks"
-import {LoaderPuntito} from"../../Components/loaderPuntito/loaderPuntito"
+import {LoaderPuntito} from"../../Components/loaders/loaderBarra/loaderPuntito"
 
  function Perfil(){  
    const [lookUser,serUser]=useRecoilState(user)

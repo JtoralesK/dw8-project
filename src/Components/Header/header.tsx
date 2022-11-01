@@ -5,7 +5,7 @@ import {obtieneUser} from"../../hooks/hooks"
 import {page,ubication,user} from"../../hooks/atoms"
 import { useRecoilState} from"recoil"
 import {pages} from"./namesPages.js"
-import {Loader} from"../loader/loader"
+import {Loader} from"../loaders/loaderHeader/loader"
 import {ButtonMenu} from"../ui/buttonMenu/buttonMenu.index"
 function Header(){
     const navigate = useNavigate() 

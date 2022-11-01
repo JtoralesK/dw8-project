@@ -5,7 +5,7 @@ import {reportesCercanos,EnviarEmail} from "../../hooks/hooks"
 import css from"./mascotasCercanas.css"
 import {Card} from"../../Components/card/card"
 import {giveUbication} from"../../Components/giveUbication/giveUbication"
-import {Loader} from"../../Components/loader/loader"
+import {Loader} from"../../Components/loaders/loaderHeader/loader"
 import {SeccionViMascota} from"../../Components/seccionViMascota/seccionViMascota"
 
 
@@ -17,12 +17,13 @@ type CardType ={
 function MascotasCercanas(){
     //mascotas cercanas
     const [results,setResults]= useState([]);
+    console.log(results);
+    
     //conexion api
     const {obData,cargando}=reportesCercanos()
     const {enviarReporte,cargandoEmail}=EnviarEmail();
     //atom ubication
     const [location,setLocation]= useRecoilState(ubication)    
-    console.log(location);
     
     //estado de seleccion de la card
     const [cardSeleccionada,setCardSeleccionada]= useState(false);

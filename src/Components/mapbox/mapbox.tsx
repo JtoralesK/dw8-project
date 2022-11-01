@@ -15,11 +15,12 @@ import css from "mapbox-gl/dist/mapbox-gl.css";
       position: 'absolute',
       margin: '12px',
       borderRadius:' 4px',
-      background:"#7833334f"
+      background:"#7833334f",
     };
     type valoresMyPetEdit = {
       lng?:number,
-      lat?:number
+      lat?:number,
+      setLocation?:(any)=>any
     }
     export function Mapa(valores:valoresMyPetEdit){
       
@@ -79,6 +80,7 @@ import css from "mapbox-gl/dist/mapbox-gl.css";
                setLat(location.lat);
                setZoom(12);
                setMiUbicacionActivada(true)
+               valores.setLocation([location.lng,location.lat])
             }else{
                giveUbication(setLocation)
             }
@@ -101,12 +103,14 @@ import css from "mapbox-gl/dist/mapbox-gl.css";
            
       return (
          <div>
-            <div  ref={divMapaRef} style={window.innerWidth>600?{height:"250px"}:{height:"200px"}}>
+            <div  ref={divMapaRef} style={window.innerWidth>600?{height:"250px",width:"100%"}:{height:"200px",width:"100%"}}>
             <div style={divStyle}>
             Longitude:{lng}|Latitude:{lat} 
             </div>
-            <div style={{...divStyle,bottom:0,right:0}}>
-            <button type="button" onClick={miUbicacionActual} style={{"background":"none","border":"none",color:'#ffeb3b'}}>Mi ubicacion</button>
+            <div style={{...divStyle,bottom:0,right:0,cursor:"pointer",padding:"0"}}>
+            <button type="button" onClick={miUbicacionActual} 
+            style={{"background":"none","border":"none",color:'#ffeb3b',cursor:"pointer",padding:"10px"}}
+            >Mi ubicacion</button>
             </div>
             </div>
          </div>

@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 import css from"./imgDropzone.css"
-import {Loader}from"../loader/loader"
+import {Loader}from"../loaders/loaderHeader/loader"
 import {creaReporte} from"../../hooks/hooks"
 import {user} from"../../hooks/atoms"
 import { useRecoilState} from"recoil"
@@ -9,8 +9,7 @@ import { useRecoilState} from"recoil"
 
 export function MyDropzone({value,onChange}) {
     const [cargandoImg,setCargandoImg]=useState(false);
-    const [files,setFile]=useState([])
-
+    
   const onDrop = useCallback(acceptedFiles => {
     setCargandoImg(true);
     acceptedFiles.forEach(file => {
@@ -32,7 +31,7 @@ export function MyDropzone({value,onChange}) {
 })
 
   return (
-    <div className={css.dropzone} {...getRootProps()}>
+    <div className={css.dropzone}>
       <input {...getInputProps()} />
       {
          value
