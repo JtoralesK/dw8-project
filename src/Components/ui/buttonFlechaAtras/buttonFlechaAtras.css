@@ -1,0 +1,12 @@
+.buttonSeccionVista{
+    background: transparent;
+    border: none;
+    font-size: 30px;
+}
+.buttonSeccionVista:hover{
+    color: red;
+}
+.divButton{
+    display: flex;
+    justify-content: center;
+}
