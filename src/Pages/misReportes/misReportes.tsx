@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {ubication,user,reports} from "../../hooks/atoms"
 import {useRecoilState} from"recoil"
-import {misReportes,actualizarReporte} from "../../hooks/hooks"
+import {misReportes,actualizarReporte,EliminarReporte} from "../../hooks/hooks"
 import css from"./misreportes.css"
 import {Card} from"../../Components/card/card"
 import {FormReportMascota} from "../../Components/formEditarMascota/formEditarMascota"
@@ -19,6 +19,8 @@ function MisReportes(){
    const [editarMiMascota,setEditarMiMascota] = useState(false);
    const [petAEditar,setPetAEditar] = useState<PetEdit>({})
    const {cargandoReporte,actualizarRe}=actualizarReporte()
+   const {cargandoEl,eliminandoReporte}=EliminarReporte()
+
    useEffect(()=>{
    misReportes(myUser).then((e)=>{
     if(e[0]){
@@ -51,7 +53,20 @@ function MisReportes(){
                },1000)
         })
     }
-    
+    const eliminarReporte = ()=>{
+        console.log("mascota a eliminar:",petAEditar);
+        eliminandoReporte(petAEditar.id).then((e)=>{
+                console.log(e);
+              misReportes(myUser).then((e)=>{
+                    if(e[0]){
+                        setReport(e[0]);
+                    }
+                   })
+               setTimeout(()=>{
+                setEditarMiMascota(false)
+               },1000)
+        })
+    }
     
 return <>
    <div className={css.conteiner}>
@@ -78,6 +93,7 @@ return <>
                 <FormReportMascota action={1} petName={petAEditar.petName}
                  url={petAEditar.url} lat={petAEditar.lat} lng={petAEditar.lng} 
                  location={petAEditar.location} setEstado={()=>{setEditarMiMascota(false)}} 
+                 onClickEliminar={()=>{eliminarReporte()}}
                  onSubmit={(e)=>{editarReporte(e)}}/>
     </div>  
 

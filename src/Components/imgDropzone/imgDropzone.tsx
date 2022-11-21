@@ -8,9 +8,7 @@ import { useRecoilState} from"recoil"
 
 
 export function MyDropzone({value,onChange}) {
-    const [cargandoImg,setCargandoImg]=useState(false);
-    console.log(value);
-    
+    const [cargandoImg,setCargandoImg]=useState(false);    
   const onDrop = useCallback(acceptedFiles => {
     setCargandoImg(true);
     acceptedFiles.map(file => {

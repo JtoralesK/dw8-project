@@ -50,12 +50,13 @@ ul li{
     margin-top: 30px;
     justify-content: center;
     flex-direction: column;
-
+    min-width: 60%;
 }
 @media (min-width: 700px) {
     .mascotasCercanas{
         flex-direction: row;
         margin-top: 0px;
+        flex-wrap: wrap;
     }
   }
 .imgAside{

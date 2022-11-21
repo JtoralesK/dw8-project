@@ -286,3 +286,30 @@ export  function EnviarEmail(){
     enviarReporte,
   }
 }
+export  function EliminarReporte(){
+  const [cargandoEl,setCargandoEl] =useState(false)
+  async function eliminandoReporte(id:number){
+    setCargandoEl(true)    
+    if(id){
+      console.log("entro");
+      
+      const json = await fetch(`https://apx-desafio-mod7.herokuapp.com/eliminar-report/${id}`,{method:"Delete",})
+        const info= json.json()
+          try{
+            setCargandoEl(false)                    
+            return info
+          }catch(error){
+            setCargandoEl(false)            
+            return error
+          }
+    }else{
+      console.error("falta data")
+      setCargandoEl(false)    
+      return []
+    }
+  }
+  return{
+    cargandoEl,
+    eliminandoReporte,
+  }
+}

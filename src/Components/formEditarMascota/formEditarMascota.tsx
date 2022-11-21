@@ -15,6 +15,7 @@ type Prop={
    id?:number,
    action:number,//0==reporte | 1==editar reporte
    onSubmit?:(any)=>any
+   onClickEliminar?:()=>any,
    setImage?: React.Dispatch<React.SetStateAction<string>>,
    setEstado?:()=>any
 }
@@ -30,7 +31,15 @@ type Prop={
          setUrl(p.url)
       }
    },[p.url])
-
+   const eliminar =()=>{
+  if(p.onClickEliminar){
+      p.onClickEliminar();
+   }
+   }
+ 
+   ///enviar form
+   ///0 crea
+   ///1 edita
    const enviarForm = (e)=>{
       e.preventDefault();
       const {name,location}= e.target     
@@ -78,7 +87,7 @@ type Prop={
                   <div className={css.buttonesFormReporte}>
                     <button className={css.buttonEditYReport} onClick={()=>{setError(false)}}>{p.action>0?"Editar Reporte":"Reportar mascota"}</button>
                      <p style={error?{"display":"initial","color":"red","textAlign":"center"}:{"display":"none"}} >{nameError}</p>
-                    <button style={p.action>0?{display:"initial"}:{display:"none"}}>Eliminar Reporte</button>
+                    <button type="button" onClick={()=>{eliminar()}} style={p.action>0?{display:"initial"}:{display:"none"}}>Eliminar Reporte</button>
                     <div style={p.action>0?{display:"initial"}:{display:"none"}} ><ButtonFlecha onClick={()=>{p.setEstado()}}/></div>
                   </div>
                 </div>
