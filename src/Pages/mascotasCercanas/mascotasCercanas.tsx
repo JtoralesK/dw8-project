@@ -17,7 +17,6 @@ type CardType ={
 function MascotasCercanas(){
     //mascotas cercanas
     const [results,setResults]= useState([]);
-    console.log(results);
     
     //conexion api
     const {obData,cargando}=reportesCercanos()
@@ -27,6 +26,8 @@ function MascotasCercanas(){
     
     //estado de seleccion de la card
     const [cardSeleccionada,setCardSeleccionada]= useState(false);
+    console.log(cardSeleccionada);
+    
     ///data de la card seleccionada
     const [cardData,setCardData]=useState<CardType>({})
     
@@ -43,15 +44,17 @@ function MascotasCercanas(){
     }
    
     const loVi=(e?)=>{
-      setCardSeleccionada(!cardSeleccionada);
-      console.log(e);
       if(e){
         setCardData({name:e.petName,img:e.url,userEmail:e.userEmail})
       }
+      setCardSeleccionada(!cardSeleccionada);
+
   }
   const enviarEmail = (e)=>{
     enviarReporte(e.bio,e.name,e.cellphone,cardData.userEmail).then((e)=>{
-      console.log(e);
+      window.alert("Menjase enviado correctamente")
+      setCardSeleccionada(!cardSeleccionada);
+
     })
     
   }
@@ -63,10 +66,10 @@ return <>
         <aside className={css.seccionNombres}> 
           <div className={css.listado}>
           <h2 className={css.tituloListado}>Listado de mascotas</h2>
-          <ul>
+          <ul >
           {results.map((e)=>{
                 if(e){ 
-                    return  <li key={e.objectID}>{e.petName},{e.location}</li>
+                    return  <li className={css.ulMCercanas} key={e.objectID}>{e.petName},{e.location}</li>
                 }
             })}
           </ul>

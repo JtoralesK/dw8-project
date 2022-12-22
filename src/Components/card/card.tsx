@@ -11,7 +11,7 @@ type Prop ={
  function Card (p:Prop){
     const presion = ()=>{        
         if(p.onClick){
-            p.onClick({name:"javier"})
+            p.onClick(p)            
         }
     }
     return <>

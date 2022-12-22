@@ -40,7 +40,6 @@ function MisReportes(){
         if(url)newData={...newData,url}
         if(location)newData={...newData,location}
         if(latYlng)newData={...newData,latYlng}
-        console.log(newData);
         
         actualizarRe(newData,myUser.token,petAEditar.id).then((e)=>{
             misReportes(myUser).then((e)=>{
@@ -54,9 +53,7 @@ function MisReportes(){
         })
     }
     const eliminarReporte = ()=>{
-        console.log("mascota a eliminar:",petAEditar);
         eliminandoReporte(petAEditar.id).then((e)=>{
-                console.log(e);
               misReportes(myUser).then((e)=>{
                     if(e[0]){
                         setReport(e[0]);

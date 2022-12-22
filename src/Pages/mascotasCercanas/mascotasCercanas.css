@@ -75,4 +75,6 @@ ul li{
     align-items: center;
     justify-content: center;
   }
-  
+  .ulMCercanas{
+    border-bottom: 1px rgb(88, 88, 88) solid;
+  }

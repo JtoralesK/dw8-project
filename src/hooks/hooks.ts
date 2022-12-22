@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import {atom , useRecoilState, useRecoilValue,selector} from"recoil"
 import {cargar} from"./atoms"
 
+const API = "https://apipet.up.railway.app/"
+
+
  export  function obtieneUser(){
   const [cargando,setCargando] =useState(false)
   async function obData(data:any){
     setCargando(true)    
     if(data.token){
       
-      const url = await  fetch("https://apx-desafio-mod7.herokuapp.com/user",{headers:{
+      const url = await  fetch(API+"user",{headers:{
         'Authorization':`bearer ${data.token}` }})
           const dataa =  await url.json()
           if(data.error){
@@ -37,7 +40,7 @@ export async function crearUsuario(email:string,password:string,fullname:string)
     console.error("falta data")
     return []
   }else{
-    const json = await fetch("https://apx-desafio-mod7.herokuapp.com/auth",{
+    const json = await fetch(API+"auth",{
       method:"POST",
       headers:{
         'Content-Type': 'application/json'
@@ -57,7 +60,7 @@ export async function iniciarUsuario(email,password){
       console.error("falta email o password")
       return []
     }else{
-      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/auth/token",{
+      const json = await fetch(API+"auth/token",{
         method:"POST",
         headers:{
           'Content-Type': 'application/json'
@@ -86,7 +89,7 @@ export  function reportesCercanos(){
       const lat= data.lat
       const lng= data.lng
       console.log(lat,lng);
-      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/reportes-cerca-de?lat="+lat+"&lng="+lng)
+      const json = await fetch(API+"reportes-cerca-de?lat="+lat+"&lng="+lng)
         const info =  json.json()
         try{
           setCargando(false)            
@@ -105,7 +108,7 @@ export  function reportesCercanos(){
  
 }
 export async function misReportes(data){
-  const json = await fetch("https://apx-desafio-mod7.herokuapp.com/me/reportes",{headers:{
+  const json = await fetch(API+"me/reportes",{headers:{
     'Authorization':`bearer ${data.token}` }})
     const info= json.json()
     try{        
@@ -119,7 +122,7 @@ export  function actualizarPerfil(){
   async function actualiza(name:string,email:string,token:string){
     setCargando(true)    
     if((name || email) && token){
-      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/editar-perfil",{
+      const json = await fetch(API+"editar-perfil",{
         method:"PUT",
         headers:{
           'Authorization':`bearer ${token}`,
@@ -150,7 +153,7 @@ export  function actualizarPassword(){
   async function actualizaPassword(passwordVieja:string,passwordNueva:string,passwordNuevaConfirmar:string,token:string){
     setCargando(true)    
     if(passwordVieja && passwordNueva && passwordNuevaConfirmar && token){
-      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/change-password",{
+      const json = await fetch(API+"change-password",{
         method:"POST",
         headers:{
           'Authorization':`bearer ${token}`,
@@ -188,7 +191,7 @@ export  function creaReporte(){
   console.table( {petName,location,lat,lng,url});
       
     if(petName && location && lat && lng && url){
-      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/profile",{
+      const json = await fetch(API+"profile",{
         method:"POST",
         headers:{
           'Authorization':`bearer ${token}`,
@@ -228,7 +231,7 @@ export  function actualizarReporte(){
     if(petName || location || (lat && lng) || url){
       console.log("entro al hook");
       
-      const json = await fetch(`https://apx-desafio-mod7.herokuapp.com/reportes/${id}`,{
+      const json = await fetch(API+`reportes/${id}`,{
         method:"PUT",
         headers:{
           'Authorization':`bearer ${token}`,
@@ -261,16 +264,15 @@ export  function EnviarEmail(){
     if(bio && name && cellphone && emailUser){
       console.log("entro");
       
-      const json = await fetch("https://apx-desafio-mod7.herokuapp.com/email",{
+      const json = await fetch(API+"email",{
         method:"POST",
         headers:{
           'Content-Type': 'application/json'
         },
-         body:JSON.stringify({bio,name,cellphone,emailUser})})
-          const info= json.json()
+         body:JSON.stringify({emailUser,bio,name,cellphone})})
           try{
             setCargandoEmail(false)                    
-            return info
+            return true
           }catch(error){
             setCargandoEmail(false)            
             return error
@@ -293,7 +295,7 @@ export  function EliminarReporte(){
     if(id){
       console.log("entro");
       
-      const json = await fetch(`https://apx-desafio-mod7.herokuapp.com/eliminar-report/${id}`,{method:"Delete",})
+      const json = await fetch(API+`eliminar-report/${id}`,{method:"Delete",})
         const info= json.json()
           try{
             setCargandoEl(false)                    
