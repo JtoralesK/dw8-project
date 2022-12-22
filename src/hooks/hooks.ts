@@ -187,8 +187,6 @@ export  function creaReporte(){
     const lng = data.latYlng[0]
     const lat =data.latYlng[1]
     const url = data.url
-
-  console.table( {petName,location,lat,lng,url});
       
     if(petName && location && lat && lng && url){
       const json = await fetch(API+"profile",{
@@ -201,10 +199,10 @@ export  function creaReporte(){
           const info= json.json()
           try{
             serReporte(false)                    
-            return info
+            return [true,info]
           }catch(error){
             serReporte(false)            
-            return error
+            return  [false,info]
           }
     }else{
       console.error("falta data")

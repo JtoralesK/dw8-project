@@ -61,3 +61,6 @@
 .buttonEditYReport:hover{
     background-color: rgba(158, 165, 159, 0.782);
 }
+.loaderReport{
+    text-align: center;
+}

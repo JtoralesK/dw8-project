@@ -91,7 +91,9 @@ return <>
                  url={petAEditar.url} lat={petAEditar.lat} lng={petAEditar.lng} 
                  location={petAEditar.location} setEstado={()=>{setEditarMiMascota(false)}} 
                  onClickEliminar={()=>{eliminarReporte()}}
-                 onSubmit={(e)=>{editarReporte(e)}}/>
+                 onSubmit={(e)=>{editarReporte(e)}}
+                 estado={cargandoEl || cargandoReporte }
+                 />
     </div>  
 
    </div>

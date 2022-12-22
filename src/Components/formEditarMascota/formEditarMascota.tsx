@@ -1,10 +1,9 @@
 import React , { useState ,useEffect}from "react"
-import {user} from"../../hooks/atoms"
-import { useRecoilState} from"recoil"
 import css from"./formReport.css"
 import {Mapa} from"../../Components/mapbox/mapbox"
 import {MyDropzone} from "../../Components/imgDropzone/imgDropzone"
 import {ButtonFlecha} from"../../Components/ui/buttonFlechaAtras/buttonFlechaAtras"
+import {LoaderCircular}from"../loaders/loaderCircular/loaderCircular"
 
 type Prop={
    petName?:string,
@@ -17,14 +16,16 @@ type Prop={
    onSubmit?:(any)=>any
    onClickEliminar?:()=>any,
    setImage?: React.Dispatch<React.SetStateAction<string>>,
-   setEstado?:()=>any
+   setEstado?:()=>any,
+   estado?:boolean
 }
  function FormReportMascota(p:Prop){     
+   console.log(p.estado);
+   
    const [url,setUrl]= useState("")
    const [latYlng,setLocation]= useState([null,null])
    const [error,setError]=useState(false)
    const [nameError,setNameError]=useState("")
-
 
    useEffect(()=>{
       if(p.url){
@@ -34,6 +35,7 @@ type Prop={
    const eliminar =()=>{
   if(p.onClickEliminar){
       p.onClickEliminar();
+
    }
    }
  
@@ -92,6 +94,8 @@ type Prop={
                   </div>
                 </div>
                </div>
+               <div className={css.loaderReport}><LoaderCircular estado={p.estado}></LoaderCircular></div>
+
                </form> 
      </>
         )

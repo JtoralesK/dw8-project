@@ -16,7 +16,7 @@ import {useNavigate } from"react-router-dom"
 
    const reportar = (e)=>{
       creaReport(e,miData.token).then((json)=>{
-         if(e[0].id){
+         if(json[0]){
             console.log("se ha creado reporte",json);
             setTimeout(()=>{
                navigate("/misReportes")
@@ -34,7 +34,8 @@ import {useNavigate } from"react-router-dom"
                 <h1 >Mi mascota perdida</h1>
                 <FormReportMascota onSubmit={(e)=>{reportar(e)}} action={0}></FormReportMascota>
             </div>
-            <LoaderCircular estado={cargandoReporte}></LoaderCircular>
+            <div className={css.loaderReport}><LoaderCircular estado={cargandoReporte}></LoaderCircular></div>
+
            </div>
         </div>
      </>
