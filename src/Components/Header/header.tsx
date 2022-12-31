@@ -38,7 +38,10 @@ function Header(){
     return <> 
      <header className={css.header}>
         <div className={css.wrapper}>
-            <div className={css.menuLinks} onClick={()=>{setStyleButton(false)}} ><Link to={"/"}>PetApx</Link></div>
+            <div  onClick={()=>{setStyleButton(false)}} >
+                <Link to={"/"}>
+                <img width={200} src={"https://media.petcolove.org/Attachments/NewItems/PetcoLoveLostLogo_ColorRGB_20211022172440_0.svg"} id={"s"} />
+                </Link></div>
             <div className={css.abrir}  onClick={()=>{setStyleButton(!styleButton) }}><ButtonMenu state={styleButton} ></ButtonMenu></div>
                <ul className={css.menu}>
                {pages.map((e)=>{
