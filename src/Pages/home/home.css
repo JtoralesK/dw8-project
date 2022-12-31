@@ -2,16 +2,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 .cajaTitulo{
     margin: 0 0 40px 0;
     padding: 0 40px;
     max-width: 600px;
     align-items: center;
-    flex-grow:2;
     justify-content: center;
-    text-align: center;
 }
 
 .titulo{
@@ -35,6 +33,7 @@
     .cajaTitulo{
      text-align: center;
     }
+   
   }
 @media (max-width: 750px) {
     .titulo{
@@ -53,9 +52,8 @@
   .img{
     padding: 0;
     width: 100%;
-    height: 100vh;
-    margin-left: auto;
-     display: block;
+    height: 100%;
+    margin:0;
   }
   @media (max-width: 750px) {
     .img{

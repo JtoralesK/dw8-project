@@ -26,14 +26,14 @@ return <>
     <div className={css.listFooter}>
         <div>
             <h3 className={css.listFooterH3}>Who We Are
-             <span className={css.buttonVerMas}><button onClick={()=>{click(1)}}><VscTriangleDown/></button></span>
+             <span className={css.buttonVerMas}><button className={css.buttonFooter} onClick={()=>{click(1)}}><VscTriangleDown/></button></span>
             </h3>
             <p style={v[0]===true?{"display":"initial"}:{display:"none"}} className={css.listFooterP}>About</p>
         </div>
         <div>
             <h3 className={css.listFooterH3}>
                 Our Family
-                <span className={css.buttonVerMas}><button onClick={()=>{click(2)}} ><VscTriangleDown/></button></span>
+                <span className={css.buttonVerMas}><button className={css.buttonFooter} onClick={()=>{click(2)}} ><VscTriangleDown/></button></span>
            </h3>
             <p className={css.listFooterP} style={v[1]===true?{"display":"block"}:{display:"none"}}>Petco Love</p>
             <p className={css.listFooterP} style={v[1]===true?{"display":"block"}:{display:"none"}}>Petco.com</p>
@@ -41,7 +41,7 @@ return <>
         <div>
             <h3 className={css.listFooterH3}>
                 Partners
-                <span className={css.buttonVerMas}><button onClick={()=>{click(3)}}><VscTriangleDown/></button></span>
+                <span className={css.buttonVerMas}><button className={css.buttonFooter} onClick={()=>{click(3)}}><VscTriangleDown/></button></span>
             </h3>
            <p className={css.listFooterP} style={v[2]===true?{"display":"block"}:{display:"none"}}>Supporters</p>
             <p className={css.listFooterP} style={v[2]===true?{"display":"block"}:{display:"none"}}>Shelters</p>
@@ -51,14 +51,14 @@ return <>
         <div>
             <h3 className={css.listFooterH3}>
                 Pet Search
-            <span className={css.buttonVerMas}><button onClick={()=>{click(4)}}><VscTriangleDown/></button></span>
+            <span className={css.buttonVerMas}><button className={css.buttonFooter} onClick={()=>{click(4)}}><VscTriangleDown/></button></span>
             </h3>
             <p className={css.listFooterP} style={v[3]===true?{"display":"initial"}:{display:"none"}}>Search Lost Pets</p>
         </div>
         <div>
             <h3 className={css.listFooterH3}>
             Get in Touch
-            <span className={css.buttonVerMas}><button onClick={()=>{click(5)}}><VscTriangleDown/></button></span>
+            <span className={css.buttonVerMas}><button className={css.buttonFooter} onClick={()=>{click(5)}}><VscTriangleDown/></button></span>
             </h3>
             <p className={css.listFooterP} style={v[4]===true?{"display":"initial"}:{display:"none"}}>Help Center</p>
         </div>

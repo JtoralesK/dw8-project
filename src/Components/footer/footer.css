@@ -25,7 +25,7 @@
     }
     .linksFooter{
         justify-content:center;
-        margin-top: 0px;
+        margin-top: 5px;
         font-size: 7vh;
         width: 50%;
 
@@ -58,7 +58,7 @@
 .buttonVerMas{
     display: none;
 }
-button{
+.buttonFooter{
     background: transparent;
     border: 0px;
     cursor: pointer;
