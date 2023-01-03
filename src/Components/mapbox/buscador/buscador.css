@@ -1,0 +1,6 @@
+.links{
+    position: relative;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+}

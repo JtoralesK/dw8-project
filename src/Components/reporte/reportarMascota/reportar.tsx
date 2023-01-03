@@ -52,10 +52,7 @@ type Prop={
                </div>
                <div className={css.divZonaUbicacion}>
                 <Mapa setLocation={(a)=>{setLocation(a)}}></Mapa>
-                <label className={css.labelLocalidad}>
-                <h2>Indica ciudad y localidad*</h2>
-                <input className={css.inputReport} type="text"  name="location" required={true}  placeholder={"Buenos Aires, Retiro"}/>
-                </label>
+
                 <div className={css.buttonsReportar}>
                   <div className={css.buttonesFormReporte}>
                     <button className={css.buttonEditYReport} onClick={()=>{setError(false)}}>{"Reportar mascota"}</button>

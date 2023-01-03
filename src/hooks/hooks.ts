@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import {atom , useRecoilState, useRecoilValue,selector} from"recoil"
-import {cargar} from"./atoms"
 
 const API = "https://apipet.up.railway.app/"
 
@@ -313,3 +311,21 @@ export  function EliminarReporte(){
     eliminandoReporte,
   }
 }
+const MAPBOX_TOKEN = "pk.eyJ1IjoiamF2aXRvcmFsZXNrIiwiYSI6ImNreTR0ZXg1eDBmN3EybnE5ZmVyc2d2OWQifQ.2CklQ60c6qrllj5ryyJBKg"
+
+export  function BuscarLugares(){
+  async function enviaResultados(a:string){
+    if(a){            
+      const json = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${a}.json?access_token=${MAPBOX_TOKEN}`)
+        const info= json.json()
+          try{
+            return info
+          }catch(error){
+            return error
+          }
+    }else{return []}
+    }
+    return {enviaResultados}
+  }
+   
+   

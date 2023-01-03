@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {ubication,user,reports} from "../../hooks/atoms"
 import {useRecoilState} from"recoil"
-import {misReportes,actualizarReporte,EliminarReporte} from "../../hooks/hooks"
+import {misReportes} from "../../hooks/hooks"
 import css from"./misreportes.css"
 import {Card} from"../../Components/card/card"
 import {useNavigate } from"react-router-dom"

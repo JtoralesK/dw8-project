@@ -3,25 +3,10 @@ import { useRecoilState} from"recoil"
 import {ubication} from"../../hooks/atoms"
 import {Map, Marker } from 'mapbox-gl';
 import {giveUbication}from"../giveUbication/giveUbication"
-import css from "mapbox-gl/dist/mapbox-gl.css";
-
+import { divStyle } from "./style";
+import {valoresMyPetEdit} from "./types"
+import { Buscador } from "./buscador";
    const MAPBOX_TOKEN = "pk.eyJ1IjoiamF2aXRvcmFsZXNrIiwiYSI6ImNreTR0ZXg1eDBmN3EybnE5ZmVyc2d2OWQifQ.2CklQ60c6qrllj5ryyJBKg"
-   const divStyle:any = {
-      backgroundColor: '40px',
-      color: ' #ffeb3b',
-      padding: '6px 12px',
-      fontFamily: 'monospace',
-      zIndex: 1,
-      position: 'absolute',
-      margin: '12px',
-      borderRadius:' 4px',
-      background:"#7833334f",
-    };
-    type valoresMyPetEdit = {
-      lng?:number,
-      lat?:number,
-      setLocation?:(any)=>any
-    }
     export function Mapa(valores:valoresMyPetEdit){
       
       const divMapaRef = useRef<HTMLDivElement>(null);
@@ -30,8 +15,7 @@ import css from "mapbox-gl/dist/mapbox-gl.css";
       const [lng,setLng]= useState<any>(-51.241)
       const [lat,setLat]= useState<any>(-30.4235)
       const [zoom, setZoom] = useState<any>(5);
-      const [miUbicaionActiva,setMiUbicacionActivada]=useState(false)
-
+      const [miUbicaionActiva,setMiUbicacionActivada]=useState(false)      
       //si esta en modo editar, pone la ubicacion que ya se encuentra en la mascota
       useEffect(()=>{
         if(valores.lat && valores.lng){
@@ -85,6 +69,9 @@ import css from "mapbox-gl/dist/mapbox-gl.css";
                giveUbication(setLocation)
             }
       }
+
+
+
       //setea el mapa
          useEffect(()=>{   
            if(divMapaRef.current){
@@ -113,6 +100,13 @@ import css from "mapbox-gl/dist/mapbox-gl.css";
             >Mi ubicacion</button>
             </div>
             </div>
+         <Buscador push={(e)=>{
+            setLng(e.lng)
+            setLat(e.lat)
+            setZoom(12);
+            setMiUbicacionActivada(true)
+            valores.setLocation([e.lng,e.lat])
+            }}/>
          </div>
        );
     }
