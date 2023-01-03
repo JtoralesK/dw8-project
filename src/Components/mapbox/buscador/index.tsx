@@ -9,6 +9,7 @@ type prop = {
     const [center,setCenter]= useState<any>({})
     const [place,setPlace]= useState<any>("")
     const v= center.center
+   
     useEffect(()=>{
         if(v){
             const v= center.center
@@ -22,19 +23,19 @@ type prop = {
    
    }
     return (
-         <div >
-          <h2>Indica ciudad y localidad*</h2>
-          <input value={place} onChange={(e)=>{            
+         <div className={css.divBuscador}>
+          <h2 className={css.h2Buscador}>Indica ciudad y localidad*</h2>
+          <input className={css.inputBus} value={place} onChange={(e)=>{            
            setPlace(e.target.value)
            handle(e)
         }} 
-          style={{width:"100%"}} type="text"  name="location"
+           type="text"  name="location"
            required={true}  placeholder={"Buenos Aires, Retiro"}/>
-           <div className={css.links}>
+         <div className={css.links} >
             {results
             ?
              <>{results.map((e)=>{
-                return <button  key={e.id} onClick={()=>{
+                return <button  className={css.buttonBus}  key={e.id} onClick={()=>{
                     setCenter(e)
                     setResults([])
                     setPlace(e.place_name)
