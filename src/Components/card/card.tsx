@@ -19,7 +19,7 @@ type Prop ={
          <img className={css.serviciosCardImg} src={p.img} alt="" />
         <div className={css.info}>
         <h2 className={css.localidad}>{p.localidad}</h2>
-        <div className={css.linLovi}>
+        <div className={css.lovi}>
         <h4 className={css.name}>{p.name}</h4>
         <button onClick={presion} className={css.button}>{p.nameButon}</button>
         </div>

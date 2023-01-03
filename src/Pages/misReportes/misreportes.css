@@ -17,17 +17,14 @@
     }
 }
 
-
 .body{
     min-height: 100vh;
-
 }
 
 .conteinerEdit{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    padding: 1.5rem;
     font-family: 'Poppins', sans-serif;
 }
 

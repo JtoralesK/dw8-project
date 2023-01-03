@@ -31,7 +31,7 @@ import {ReportMascota}from"../../Components/reporte/reportarMascota/reportar"
            <div className={css.conteiner}>
            <div className={css.reportConteiner}>
                 <h1 >Mi mascota perdida</h1>
-                <ReportMascota onSubmit={(e)=>{reportar(e)}}></ReportMascota>
+                <ReportMascota onSubmit={(e)=>{reportar(e)}} setEstado={()=>{ navigate("/")}}></ReportMascota>
             </div>
             <div className={css.loaderReport}><LoaderCircular estado={cargandoReporte}></LoaderCircular></div>
            </div>

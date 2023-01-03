@@ -1,5 +1,5 @@
 .bodyReport{
-    min-height: 110vh;
+    min-height: 120vh;
 
 }
 .reportConteiner{
@@ -17,6 +17,10 @@
     }
     .reportConteiner{
         justify-content: center;
+    }
+    .bodyReport{
+        min-height: 140vh;
+    
     }
 }
 .loaderReport{

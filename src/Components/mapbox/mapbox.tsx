@@ -103,7 +103,7 @@ import css from "mapbox-gl/dist/mapbox-gl.css";
            
       return (
          <div>
-            <div  ref={divMapaRef} style={window.innerWidth>600?{height:"250px",width:"100%"}:{height:"200px",width:"100%"}}>
+            <div  ref={divMapaRef} style={window.innerWidth>600?{height:"200px",width:"100%"}:{height:"150px",width:"100%"}}>
             <div style={divStyle}>
             Longitude:{lng}|Latitude:{lat} 
             </div>

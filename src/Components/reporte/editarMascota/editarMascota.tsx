@@ -67,11 +67,13 @@ type Prop={
                     <button className={css.buttonEditYReport} onClick={()=>{setError(false)}}>{"Editar Reporte"}</button>
                      <p style={error?{"display":"initial","color":"red","textAlign":"center"}:{"display":"none"}} >{nameError}</p>
                     <button type="button" onClick={()=>{eliminar()}}>Eliminar Reporte</button>
-                    <div ><ButtonFlecha onClick={()=>{p.setEstado()}}/></div>
+                    <div >
+                     <ButtonFlecha onClick={()=>{p.setEstado()}}/>
+                     <div className={css.loaderReport}><LoaderCircular estado={p.estado}></LoaderCircular></div>
+                     </div>
                   </div>
                 </div>
                </div>
-               <div className={css.loaderReport}><LoaderCircular estado={p.estado}></LoaderCircular></div>
 
                </form> 
      </>
