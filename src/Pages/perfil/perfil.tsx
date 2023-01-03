@@ -78,9 +78,9 @@ import {LoaderPuntito} from"../../Components/loaders/loaderBarra/loaderPuntito"
       <form onSubmit={editarPassword} className={css.editarPassword} style={mePassWord?{display:"initial"}:{display:"none"}}>
         <div className={css.editarInputs}> 
         <h1 className={css.titleEditar}>Editar Password</h1>
-        <input type="password" placeholder="Antigua Password" name="antiguaPassword" required />
-        <input type="password" placeholder="Nuevo Password" name="nuevaPassword" required/> 
-        <input type="password" placeholder="Repetir password" name="passwordConfirmar" required/>
+        <input className={css.input} type="password" placeholder="Antigua Password" name="antiguaPassword" required />
+        <input  className={css.input} type="password" placeholder="Nuevo Password" name="nuevaPassword" required/> 
+        <input  className={css.input} type="password" placeholder="Repetir password" name="passwordConfirmar" required/>
         <MyButton name="Guardar Cambios" ></MyButton>
         <LoaderPuntito state={cargando || cargandoPassword}></LoaderPuntito>
         </div>
@@ -88,8 +88,8 @@ import {LoaderPuntito} from"../../Components/loaders/loaderBarra/loaderPuntito"
        <form onSubmit={editarPerfil} className={css.editarPerfil} style={meInfo?{display:"initial"}:{display:"none"}} >
         <div className={css.editarInputs}> 
         <h1 className={css.titleEditar}>Editar Perfil</h1>
-        <input type="text" placeholder="Nuevo Nombre" name="name"  />
-        <input type="email" placeholder="Nuevo Email" name="email" />
+        <input  className={css.input} type="text" placeholder="Nuevo Nombre" name="name"  />
+        <input  className={css.input} type="email" placeholder="Nuevo Email" name="email" />
         <MyButton name="Guardar Cambios" ></MyButton>
         <LoaderPuntito state={cargando || cargandoPassword}></LoaderPuntito>
 

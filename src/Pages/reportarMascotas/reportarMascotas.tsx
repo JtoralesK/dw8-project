@@ -2,11 +2,10 @@ import React , { useState ,useEffect}from "react"
 import {user} from"../../hooks/atoms"
 import { useRecoilState} from"recoil"
 import css from"./reportar.css"
-import {FormReportMascota} from "../../Components/formEditarMascota/formEditarMascota"
 import {creaReporte} from"../../hooks/hooks"
 import {LoaderCircular} from "../../Components/loaders/loaderCircular/loaderCircular"
-import {ButtonFlecha} from"../../Components/ui/buttonFlechaAtras/buttonFlechaAtras"
 import {useNavigate } from"react-router-dom"
+import {ReportMascota}from"../../Components/reporte/reportarMascota/reportar"
 
  function Reportar(){  
 
@@ -28,14 +27,13 @@ import {useNavigate } from"react-router-dom"
    }
     return (
      <>
-        <div className={css.body}>
+        <div className={css.bodyReport}>
            <div className={css.conteiner}>
            <div className={css.reportConteiner}>
                 <h1 >Mi mascota perdida</h1>
-                <FormReportMascota onSubmit={(e)=>{reportar(e)}} action={0}></FormReportMascota>
+                <ReportMascota onSubmit={(e)=>{reportar(e)}}></ReportMascota>
             </div>
             <div className={css.loaderReport}><LoaderCircular estado={cargandoReporte}></LoaderCircular></div>
-
            </div>
         </div>
      </>

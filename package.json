@@ -32,6 +32,7 @@
     "react-mapbox-gl": "^5.1.1",
     "react-router-dom": "^6.3.0",
     "recoil-persist": "^4.2.0",
-    "style-loader": "^3.3.1"
+    "style-loader": "^3.3.1",
+    "use-history": "^1.4.1"
   }
 }

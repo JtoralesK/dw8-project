@@ -25,7 +25,7 @@ type Prop ={
     return <>
      <div className={css.conteinerViMascota}>
        <div className={css.seccionMascota}>
-        <div><img className={css.mascotaVista} src={p.img} alt="" /></div>
+        <div className={css.seccionMascotaImg}><img className={css.mascotaImg} src={p.img}  /></div>
        <div>
        <h1 className={css.titleSeccionMascota}>¿Viste a {p.name}?</h1>
        <form onSubmit={enviarForm} className={css.formSeccionMascota}>
@@ -39,7 +39,7 @@ type Prop ={
             </label>
             <label>
                 <p className={css.pSeccionMascota}>¿Donde viste a {p.name}?</p>
-                <textarea className={css.inputSeccionMascota} name="bio"  cols={5} rows={5}></textarea>
+                <textarea className={css.inputSeccionMascota} name="bio"  ></textarea>
             </label>
             <div className={css.divButton}>
             <button className={css.buttonFormSeccionMascota}>Reportar información</button>

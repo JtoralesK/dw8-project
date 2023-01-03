@@ -32,18 +32,26 @@
         justify-content: space-around;
     }
 }
-.mascotaVista{
+.mascotaImg{
     height: 200px;
     width: 100%;
 }
+
 @media (min-width:900px) {
-    .mascotaVista{
+    .mascotaImg{
         height: 400px;
         width: 100%;
     }
+    .seccionMascotaImg{
+        width: 50%;
+        align-items: center;
+        margin-top: 15px;
+    }
 }
 .inputSeccionMascota{
-    width: 100%;
+    width: 90%;
+    resize: none;
+    padding: 15px;
 }
 
 .divButton{

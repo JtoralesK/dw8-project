@@ -1,51 +1,26 @@
-import React , { useState ,useEffect}from "react"
-import css from"./formReport.css"
-import {Mapa} from"../../Components/mapbox/mapbox"
-import {MyDropzone} from "../../Components/imgDropzone/imgDropzone"
-import {ButtonFlecha} from"../../Components/ui/buttonFlechaAtras/buttonFlechaAtras"
-import {LoaderCircular}from"../loaders/loaderCircular/loaderCircular"
-
+import React , { useState}from "react"
+import css from"./reportar.css"
+import {Mapa} from"../../mapbox/mapbox"
+import {MyDropzone} from "../../imgDropzone/imgDropzone"
+import {ButtonFlecha} from"../../ui/buttonFlechaAtras/buttonFlechaAtras"
+import {LoaderCircular}from"../../loaders/loaderCircular/loaderCircular"
 type Prop={
-   petName?:string,
-   url?:string,
-   lat?:number,
-   lng?:number,
-   location?:string,
-   id?:number,
-   action:number,//0==reporte | 1==editar reporte
    onSubmit?:(any)=>any
    onClickEliminar?:()=>any,
    setImage?: React.Dispatch<React.SetStateAction<string>>,
    setEstado?:()=>any,
    estado?:boolean
 }
- function FormReportMascota(p:Prop){     
-   console.log(p.estado);
+ function ReportMascota(p:Prop){     
    
    const [url,setUrl]= useState("")
    const [latYlng,setLocation]= useState([null,null])
    const [error,setError]=useState(false)
    const [nameError,setNameError]=useState("")
 
-   useEffect(()=>{
-      if(p.url){
-         setUrl(p.url)
-      }
-   },[p.url])
-   const eliminar =()=>{
-  if(p.onClickEliminar){
-      p.onClickEliminar();
-
-   }
-   }
- 
-   ///enviar form
-   ///0 crea
-   ///1 edita
    const enviarForm = (e)=>{
       e.preventDefault();
       const {name,location}= e.target     
-      if(p.action<1){
          if(url){
             if(latYlng[0]!=null || latYlng[1]!=null){
                if(p.onSubmit){               
@@ -61,18 +36,14 @@ type Prop={
             setNameError("Falta Imagen")
             setError(true)
          }
-      }else{
-         p.onSubmit({latYlng,url,petName:name.value,location:location.value}) 
-      }
-      
    }
     return (
      <>
-           <form onSubmit={(e)=>{enviarForm(e)}} className={css.form}> 
+          <form onSubmit={(e)=>{enviarForm(e)}} className={css.form}> 
                <div  className={css.divZonaDescription}>
                <label className={css.labelName}>
                 <h2>Nombre de la mascota*</h2>
-                <input className={css.inputReport} type="text"  name="name" required={p.action>0?false:true}  placeholder={p.petName?p.petName:"michi"}/>
+                <input className={css.inputReport} type="text"  name="name" required={true}  placeholder={"michi"}/>
                 </label>
                <label>
                <h2>Foto de la mascota*</h2>
@@ -80,25 +51,25 @@ type Prop={
                </label>
                </div>
                <div className={css.divZonaUbicacion}>
-                <Mapa lng={p.lng?p.lng:null} lat={p.lat?p.lat:null} setLocation={(a)=>{setLocation(a)}}></Mapa>
+                <Mapa setLocation={(a)=>{setLocation(a)}}></Mapa>
                 <label className={css.labelLocalidad}>
                 <h2>Indica ciudad y localidad*</h2>
-                <input className={css.inputReport} type="text"  name="location" required={p.action>0?false:true}  placeholder={p.location?p.location:"Buenos Aires, Retiro"}/>
+                <input className={css.inputReport} type="text"  name="location" required={true}  placeholder={"Buenos Aires, Retiro"}/>
                 </label>
                 <div className={css.buttonsReportar}>
                   <div className={css.buttonesFormReporte}>
-                    <button className={css.buttonEditYReport} onClick={()=>{setError(false)}}>{p.action>0?"Editar Reporte":"Reportar mascota"}</button>
+                    <button className={css.buttonEditYReport} onClick={()=>{setError(false)}}>{"Reportar mascota"}</button>
                      <p style={error?{"display":"initial","color":"red","textAlign":"center"}:{"display":"none"}} >{nameError}</p>
-                    <button type="button" onClick={()=>{eliminar()}} style={p.action>0?{display:"initial"}:{display:"none"}}>Eliminar Reporte</button>
-                    <div style={p.action>0?{display:"initial"}:{display:"none"}} ><ButtonFlecha onClick={()=>{p.setEstado()}}/></div>
+                    <div style={{display:"initial"}} ><ButtonFlecha onClick={()=>{p.setEstado()}}/></div>
                   </div>
                 </div>
                </div>
                <div className={css.loaderReport}><LoaderCircular estado={p.estado}></LoaderCircular></div>
 
                </form> 
+ 
      </>
         )
  }    
    
-export {FormReportMascota}
+export {ReportMascota}

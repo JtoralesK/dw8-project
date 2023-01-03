@@ -2,10 +2,6 @@ import React, {useCallback, useEffect, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 import css from"./imgDropzone.css"
 import {Loader}from"../loaders/loaderHeader/loader"
-import {creaReporte} from"../../hooks/hooks"
-import {user} from"../../hooks/atoms"
-import { useRecoilState} from"recoil"
-
 
 export function MyDropzone({value,onChange}) {
     const [cargandoImg,setCargandoImg]=useState(false);    
