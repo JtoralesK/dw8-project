@@ -30,7 +30,7 @@ type prop = {
            handle(e)
         }} 
            type="text"  name="location"
-           required={true}  placeholder={"Buenos Aires, Retiro"}/>
+            placeholder={"Buenos Aires, Retiro"}/>
          <div className={css.links} >
             {results
             ?
